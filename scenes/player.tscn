@@ -1,30 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg18syghos0qw"]
+[gd_scene load_steps=6 format=3 uid="uid://bg18syghos0qw"]
 
-[ext_resource type="Script" path="res://scripts/host.gd" id="1_3grgv"]
 [ext_resource type="Texture2D" uid="uid://bu6p2amnwgn3k" path="res://icon.svg" id="1_evoku"]
-[ext_resource type="Script" path="res://scripts/sword.gd" id="2_54six"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_qxqfq"]
+[ext_resource type="Script" path="res://scripts/sword_movement.gd" id="2_54six"]
+[ext_resource type="Texture2D" uid="uid://cswrkmcdvv5xt" path="res://assets/sprites/Rusty_sword.png" id="4_4ap8g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_17tin"]
-size = Vector2(112.5, 111)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qljx2"]
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(640, 392)
-script = ExtResource("1_3grgv")
-
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("1_evoku")
+script = ExtResource("1_qxqfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_17tin")
+shape = SubResource("RectangleShape2D_qljx2")
+disabled = true
 
 [node name="Pivot" type="Node2D" parent="."]
 script = ExtResource("2_54six")
 
 [node name="Sword" type="Sprite2D" parent="Pivot"]
-modulate = Color(0.329158, 0.329158, 0.329158, 1)
 position = Vector2(147, 0)
 rotation = 1.5708
-scale = Vector2(0.25, 1.25)
+scale = Vector2(8, 8)
+texture = ExtResource("4_4ap8g")
+
+[node name="Host" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="Host"]
 texture = ExtResource("1_evoku")
 
 [node name="Camera2D" type="Camera2D" parent="."]

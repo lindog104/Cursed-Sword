@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmo5t60hm4yvp"
-path="res://.godot/imported/healthy_full.png-c2533cec880aec037e6b51cbbc5ad1c6.ctex"
+uid="uid://bkw5f85orddp0"
+path="res://.godot/imported/pixil-layer-Slime.png-83b1c64e3a95f859fe48d498b9d72739.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/healthy_full.png"
-dest_files=["res://.godot/imported/healthy_full.png-c2533cec880aec037e6b51cbbc5ad1c6.ctex"]
+source_file="res://assets/sprites/enemies/pixil-layer-Slime.png"
+dest_files=["res://.godot/imported/pixil-layer-Slime.png-83b1c64e3a95f859fe48d498b9d72739.ctex"]
 
 [params]
 

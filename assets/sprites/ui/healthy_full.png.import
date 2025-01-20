@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxcfg4imf8cmi"
-path="res://.godot/imported/SHIELD SPIRE.png-f4048538ff0900df8bd7702f1a814d97.ctex"
+uid="uid://cmo5t60hm4yvp"
+path="res://.godot/imported/healthy_full.png-8b8d7a06c207f25b03cea375153f9422.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/SHIELD SPIRE.png"
-dest_files=["res://.godot/imported/SHIELD SPIRE.png-f4048538ff0900df8bd7702f1a814d97.ctex"]
+source_file="res://assets/sprites/ui/healthy_full.png"
+dest_files=["res://.godot/imported/healthy_full.png-8b8d7a06c207f25b03cea375153f9422.ctex"]
 
 [params]
 

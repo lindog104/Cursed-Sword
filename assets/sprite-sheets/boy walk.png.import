@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bim2nry0yrysc"
-path="res://.godot/imported/Health_empty.png-5a638fc3e4718f2ade83d7f0f67c704b.ctex"
+uid="uid://bdbn0rr4fdi74"
+path="res://.godot/imported/boy walk.png-486381838f540528c4cfb7a08dc5ac92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Health_empty.png"
-dest_files=["res://.godot/imported/Health_empty.png-5a638fc3e4718f2ade83d7f0f67c704b.ctex"]
+source_file="res://assets/sprite-sheets/boy walk.png"
+dest_files=["res://.godot/imported/boy walk.png-486381838f540528c4cfb7a08dc5ac92.ctex"]
 
 [params]
 

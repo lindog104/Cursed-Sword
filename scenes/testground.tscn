@@ -1,71 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlaeleu6opx7f"]
+[gd_scene load_steps=3 format=3 uid="uid://dlaeleu6opx7f"]
 
+[ext_resource type="PackedScene" uid="uid://3ld8lrwfhpet" path="res://scenes/hud.tscn" id="1_1fj0v"]
 [ext_resource type="PackedScene" uid="uid://bg18syghos0qw" path="res://scenes/player.tscn" id="1_04q76"]
-[ext_resource type="Texture2D" uid="uid://bu6p2amnwgn3k" path="res://icon.svg" id="2_oiqh2"]
-[ext_resource type="Texture2D" uid="uid://bxcfg4imf8cmi" path="res://sprites/SHIELD SPIRE.png" id="3_3bc52"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2raio"]
-atlas = ExtResource("3_3bc52")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nwvup"]
-atlas = ExtResource("3_3bc52")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ali33"]
-atlas = ExtResource("3_3bc52")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bkcy"]
-atlas = ExtResource("3_3bc52")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hhkr1"]
-atlas = ExtResource("3_3bc52")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_afi58"]
-atlas = ExtResource("3_3bc52")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qecnu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2raio")
-}, {
-"duration": 0.75,
-"texture": SubResource("AtlasTexture_nwvup")
-}, {
-"duration": 0.75,
-"texture": SubResource("AtlasTexture_ali33")
-}, {
-"duration": 0.75,
-"texture": SubResource("AtlasTexture_6bkcy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hhkr1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_afi58")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Testground" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("1_1fj0v")]
+
 [node name="Player" parent="." instance=ExtResource("1_04q76")]
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(401, 254)
-texture = ExtResource("2_oiqh2")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(398, 254)
-scale = Vector2(14.1563, 11.875)
-sprite_frames = SubResource("SpriteFrames_qecnu")
-frame_progress = 0.0756195
 
 [editable path="Player"]

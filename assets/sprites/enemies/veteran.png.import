@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cswrkmcdvv5xt"
-path="res://.godot/imported/Rusty_sword.png-df5133c5968535633858450b7ac87eed.ctex"
+uid="uid://xfm6gxm6dpny"
+path="res://.godot/imported/veteran.png-a061824db9bcb9126e0147ce6dc6d52d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Rusty_sword.png"
-dest_files=["res://.godot/imported/Rusty_sword.png-df5133c5968535633858450b7ac87eed.ctex"]
+source_file="res://assets/sprites/enemies/veteran.png"
+dest_files=["res://.godot/imported/veteran.png-a061824db9bcb9126e0147ce6dc6d52d.ctex"]
 
 [params]
 
