@@ -23,6 +23,14 @@ func move(player_position: Vector2) -> Vector2:
 	# the mouse at rate of the speed var
 	velocity = player_position.direction_to(get_global_mouse_position()) * speed
 	
+	# Checks if the Host is moving towards the right
+	if velocity.x > 0:
+		# Flips the sprite to face the right
+		$Icon.flip_h = true
+	else:
+		# Flips the sprite to face the left
+		$Icon.flip_h = false
+	
 	# Returns the directional vector to the player movement script
 	return velocity
 

@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlaeleu6opx7f"]
+[gd_scene load_steps=6 format=3 uid="uid://dlaeleu6opx7f"]
 
 [ext_resource type="PackedScene" uid="uid://3ld8lrwfhpet" path="res://scenes/hud.tscn" id="1_1fj0v"]
 [ext_resource type="PackedScene" uid="uid://bg18syghos0qw" path="res://scenes/player.tscn" id="1_04q76"]
+[ext_resource type="Script" path="res://scripts/hosts/base_host_class.gd" id="3_elau8"]
+[ext_resource type="PackedScene" uid="uid://etba1d1b7de7" path="res://scenes/slime.tscn" id="3_udd0c"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_58atq"]
+vertices = PackedVector2Array(3623.79, 1424.3, -892.406, 1931.96, -1229.64, -525.852, 3107.15, -864.352)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1241, -535, -901, 1943, 3636, 1433, 3115, -875)])
 
 [node name="Testground" type="Node2D"]
 
@@ -9,6 +16,17 @@
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("1_1fj0v")]
 
-[node name="Player" parent="." instance=ExtResource("1_04q76")]
+[node name="Player" parent="." node_paths=PackedStringArray("host") instance=ExtResource("1_04q76")]
+host = NodePath("Host")
+
+[node name="Host" parent="Player" index="2"]
+script = ExtResource("3_elau8")
+
+[node name="Slime" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_udd0c")]
+position = Vector2(181, 153)
+target = NodePath("../Player")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_58atq")
 
 [editable path="Player"]
