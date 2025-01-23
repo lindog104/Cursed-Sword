@@ -5,6 +5,8 @@ class_name HurtboxComponent
 #
 # Handles the acceptance of damage from a Hitbox
 
+signal health_changed
+
 @onready var health : int = max_health
 
 @export var max_health : int = 100
@@ -27,8 +29,11 @@ func turn_on() -> void:
 
 # Triggered when an Area2D overlaps with this one
 func on_area_entered(area: Area2D) -> void:
-	# If the detected area was a Hitbox
-	if area is HitboxComponent:
-		# Reduce health by the Hitbox's damage
-		health -= area.damage
+	# If the detected area has a different parent
+	if area.get_parent() != get_parent():
+		# If the detected area was a Hitbox
+		if area is HitboxComponent:
+			# Reduce health by the Hitbox's damage
+			health -= area.damage
+			health_changed.emit(health)
 	

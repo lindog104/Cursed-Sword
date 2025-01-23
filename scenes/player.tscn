@@ -12,34 +12,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qljx2"]
 
-[sub_resource type="Animation" id="Animation_p547c"]
-resource_name = "swing"
-length = 0.26667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [2.61799, 0.523599, 0.523599]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sword:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("4_4ap8g"), ExtResource("4_varg3"), ExtResource("4_4ap8g")]
-}
-
 [sub_resource type="Animation" id="Animation_wmueb"]
 length = 0.001
 tracks/0/type = "value"
@@ -98,6 +70,34 @@ tracks/1/keys = {
 "values": [null, SubResource("ShaderMaterial_rog2q"), SubResource("ShaderMaterial_rog2q"), null]
 }
 
+[sub_resource type="Animation" id="Animation_p547c"]
+resource_name = "swing"
+length = 0.26667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.61799, 0.523599, 0.523599]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_4ap8g"), ExtResource("4_varg3"), ExtResource("4_4ap8g")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ou5fm"]
 _data = {
 "RESET": SubResource("Animation_wmueb"),
@@ -137,6 +137,7 @@ offset = Vector2(1.42041, -9.4145)
 
 [node name="HitboxComponent" parent="Pivot" instance=ExtResource("5_utacj")]
 position = Vector2(162, -12)
+damage = 25
 disabled = true
 
 [node name="CollisionShape2D" parent="Pivot/HitboxComponent" index="0"]
@@ -151,6 +152,7 @@ scale = Vector2(12, 12)
 texture = ExtResource("7_xgvfn")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("2_108w3")]
+max_health = 50
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-10.5, 13.5)

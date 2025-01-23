@@ -35,7 +35,8 @@ layout_mode = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-value = 100.0
+max_value = 50.0
+value = 50.0
 texture_under = ExtResource("1_ekyk3")
 texture_over = ExtResource("1_ekyk3")
 texture_progress = ExtResource("2_3e2fe")
