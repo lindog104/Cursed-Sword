@@ -9,9 +9,8 @@ signal health_changed
 
 @onready var health : int = max_health
 
+@export var knockback_component : KnockbackComponent
 @export var max_health : int = 100
-
-
 
 # Disables the Area2D and its CollisionShape
 func turn_off() -> void:
@@ -36,4 +35,9 @@ func on_area_entered(area: Area2D) -> void:
 			# Reduce health by the Hitbox's damage
 			health -= area.damage
 			health_changed.emit(health)
+			
+			# If a Knockback component was assigned
+			if knockback_component:
+				# Pass it the knockback from the Hitbox
+				knockback_component.get_knocked_back(area.global_position.direction_to(global_position))
 	

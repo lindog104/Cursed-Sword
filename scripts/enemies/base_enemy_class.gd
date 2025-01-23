@@ -5,3 +5,5 @@ class_name Enemy
 #
 # Parent class for all Enemy scenes
 # Functions: 
+
+@export var stun_threshhold : float = 0.25

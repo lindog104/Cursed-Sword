@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://etba1d1b7de7"]
+[gd_scene load_steps=10 format=3 uid="uid://etba1d1b7de7"]
 
 [ext_resource type="Texture2D" uid="uid://bkw5f85orddp0" path="res://assets/sprites/enemies/pixil-layer-Slime.png" id="1_fg50j"]
 [ext_resource type="Script" path="res://scripts/enemies/slime.gd" id="1_vf4ey"]
+[ext_resource type="Shader" path="res://shaders/test.gdshader" id="1_vh8ow"]
 [ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/hurtbox_component.tscn" id="3_a07sn"]
 [ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/hitbox_component.tscn" id="4_0e24t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6c3t"]
+shader = ExtResource("1_vh8ow")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eumq4"]
 size = Vector2(72, 20)
@@ -15,13 +19,16 @@ radius = 43.0465
 radius = 43.0116
 
 [node name="Slime" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_t6c3t")
 script = ExtResource("1_vf4ey")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(8, 8)
 texture = ExtResource("1_fg50j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 30)
 shape = SubResource("RectangleShape2D_eumq4")
 
@@ -38,6 +45,7 @@ one_shot = true
 autostart = true
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_a07sn")]
+visible = false
 max_health = 50
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
@@ -46,6 +54,7 @@ shape = SubResource("CircleShape2D_06l5c")
 debug_color = Color(0.202721, 0.640799, 0, 0.42)
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_0e24t")]
+visible = false
 damage = 25
 
 [node name="CollisionShape2D" parent="HitboxComponent" index="0"]

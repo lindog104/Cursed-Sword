@@ -6,7 +6,6 @@ extends State
 # Slime blorps directly towards its target until it gets within attack range
 # Transitions to Attack when in attack range
 
-@onready var timer : Timer = $Timer
 @onready var nav_agent: NavigationAgent2D = $"../../NavigationAgent2D"
 
 var path_delay_timer : float = 3.0
@@ -36,7 +35,7 @@ func update(delta: float) -> void:
 func physicsUpdate(delta: float) -> void:
 	# Calculates the directional vector based off the speed and the navigation
 	# agent
-	owner.velocity = (delta * owner.speed) * nav_agent.get_next_path_position()
+	owner.velocity = (delta * owner.speed) * owner.global_position.direction_to(nav_agent.get_next_path_position())
 
 # Regenerates navigation path
 func make_path() -> void:
