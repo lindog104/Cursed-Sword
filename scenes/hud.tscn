@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bim2nry0yrysc" path="res://assets/sprites/ui/Health_empty.png" id="1_ekyk3"]
 [ext_resource type="Texture2D" uid="uid://cmo5t60hm4yvp" path="res://assets/sprites/ui/healthy_full.png" id="2_3e2fe"]
-[ext_resource type="Shader" path="res://shaders/blue_mask.gdshader" id="3_dw32x"]
+[ext_resource type="Shader" path="res://shaders/soul_energy.gdshader" id="3_dw32x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0kwr"]
 shader = ExtResource("3_dw32x")

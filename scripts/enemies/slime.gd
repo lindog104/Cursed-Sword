@@ -12,8 +12,6 @@ extends Enemy
 @export var initial_speed : float = 300.0
 @export var movement_cooldown : float = 1.5
 
-var speed : float 
-
 # Called every physics frame. 'delta' is the time between frames
 func _physics_process(delta: float) -> void:
 	

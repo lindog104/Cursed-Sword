@@ -9,6 +9,9 @@ signal transitioned
 # Signal to be used to trigger end of state machine
 signal finished
 
+# Export to hold the parent node of the state machine
+@export var parent : CharacterBody2D
+
 # Generic function to be called when entering this state 
 func enter()-> void:
 	pass

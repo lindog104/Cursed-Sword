@@ -5,7 +5,7 @@ void fragment() {
 	// If that pixel is not black
 	if (COLOR.rgb != vec3(0.0, 0.0, 0.0) ) {
 		// Change that color to blue
-		COLOR.rgb = vec3(0.0, 0.0, 1.0);
+		COLOR.rgb = vec3(0.0, 0.7, 0.8);
 	}
 }
 

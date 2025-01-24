@@ -8,11 +8,12 @@ extends State
 
 @onready var nav_agent: NavigationAgent2D = $"../../NavigationAgent2D"
 
-var path_delay_timer : float = 3.0
+var path_delay_timer : float = 0.1
 
 # Called when transitioning into this state 
 func enter()-> void:
-	pass
+	# Regenerate the nav path
+	make_path()
 
 # Called when transitioning out of this state
 func exit() -> void:
@@ -32,15 +33,15 @@ func update(delta: float) -> void:
 		make_path()
 
 # Called every physics frame. 'delta' is the time between frames
-func physicsUpdate(delta: float) -> void:
+func physicsUpdate(_delta: float) -> void:
 	# Calculates the directional vector based off the speed and the navigation
 	# agent
-	owner.velocity = (delta * owner.speed) * owner.global_position.direction_to(nav_agent.get_next_path_position())
+	parent.movement = parent.speed * parent.global_position.direction_to(nav_agent.get_next_path_position())
 
 # Regenerates navigation path
 func make_path() -> void:
 	# Provides the navigation agent with the current position of the target
-	nav_agent.target_position = owner.target.global_position
+	nav_agent.target_position = parent.target.global_position
 
 # Triggered when player within attack range
 func on_target_reached() -> void:

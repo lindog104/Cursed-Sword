@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://dlaeleu6opx7f"]
+[gd_scene load_steps=11 format=4 uid="uid://dlaeleu6opx7f"]
 
 [ext_resource type="PackedScene" uid="uid://3ld8lrwfhpet" path="res://scenes/hud.tscn" id="1_1fj0v"]
 [ext_resource type="PackedScene" uid="uid://bg18syghos0qw" path="res://scenes/player.tscn" id="1_04q76"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="2_0xjov"]
 [ext_resource type="Texture2D" uid="uid://b326fq152058u" path="res://assets/environment/floor_tiles.png" id="2_24heh"]
-[ext_resource type="PackedScene" uid="uid://etba1d1b7de7" path="res://scenes/slime.tscn" id="3_udd0c"]
 [ext_resource type="PackedScene" uid="uid://ba7pqrp1sr12" path="res://scenes/state_slime.tscn" id="6_rnqe3"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3bcey"]
@@ -60,13 +59,12 @@ tile_set = SubResource("TileSet_tqdns")
 
 [node name="Player" parent="." instance=ExtResource("1_04q76")]
 
-[node name="Slime" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_udd0c")]
-position = Vector2(181, 153)
-target = NodePath("../Player")
-
 [node name="StateSlime" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_rnqe3")]
 position = Vector2(1209, 202)
 target = NodePath("../Player")
+initial_speed = null
+stun_threshhold = null
+speed = null
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_58atq")

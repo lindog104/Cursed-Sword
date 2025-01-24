@@ -21,6 +21,10 @@ radius = 43.0116
 [node name="Slime" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_t6c3t")
 script = ExtResource("1_vf4ey")
+initial_speed = null
+movement_cooldown = null
+stun_threshhold = null
+speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

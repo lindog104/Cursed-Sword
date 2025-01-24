@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 
 ## Player character control script
 #
@@ -12,7 +12,10 @@ func _physics_process(_delta: float) -> void:
 	# If the player is currently possessing a Host
 	if host:
 		# Call the Host's move function to the determine the movement vector
-		velocity = host.move(global_position)
+		movement = host.move(global_position)
+	
+	# Set velocity as a value of the movement vector and any knockback
+	velocity = movement + knockback
 	
 	# Enable movement
 	move_and_slide()

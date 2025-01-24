@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 		anim_player.play("parry")
 
 # Triggered when the current animation finishes
-func on_animation_finished(anim_name: StringName) -> void:
+func on_animation_finished(_anim_name: StringName) -> void:
 	# Turn off the Hitbox
 	hitbox.turn_off()
 	

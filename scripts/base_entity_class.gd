@@ -1,11 +1,13 @@
-extends Node
-class_name KnockbackComponent
+extends CharacterBody2D
+class_name Entity
 
-## Knockback Component Class
+## Base Entity Class
 #
-# Handles accepting knockback from hitboxes and moving the parent scene
+# Base parent class for all things that can move, have health and/or be knocked back
 
-@export var parent : Node2D
+@export var speed : float = 300.0
+
+var movement : Vector2 
 
 var knockback : Vector2
 var knockback_tween : Tween
@@ -15,10 +17,11 @@ var knockback_tween : Tween
 # The direction vector is required
 func get_knocked_back(kb_direction: Vector2, kb_modifier: float = 4.0, stop_time: float = 0.25) -> void:
 	# Calculates the knockback magnitude as defaultly 4 times the parent's current velocity
-	var kb: float = abs(parent.velocity.x) * kb_modifier
+	var kb: float = abs(velocity.x) * kb_modifier
 	
 	# Establishes the minimum amount of knockback using the parent's base speed
-	kb = maxf(kb, (parent.speed / 2.5) * kb_modifier)
+	# If the parent's speed is less than 300, it uses that instead
+	kb = maxf(kb, (maxf(300.0,speed) / 2.5) * kb_modifier)
 	
 	# Initializes the directional knockback vector
 	knockback = Vector2(kb, kb) * kb_direction.normalized()
@@ -32,9 +35,3 @@ func get_knocked_back(kb_direction: Vector2, kb_modifier: float = 4.0, stop_time
 	knockback_tween = get_tree().create_tween()
 	knockback_tween.tween_property(self, "knockback", Vector2(0,0), stop_time)
 	
-
-# Called every physics frame. 'delta' is the time between frames
-func _physics_process(_delta: float) -> void:
-	# Applies the knockback if there is any
-	parent.velocity += knockback
-	print("Velocity: ", parent.velocity, " Knockback: ", knockback)

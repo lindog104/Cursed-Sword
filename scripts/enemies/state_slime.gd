@@ -11,10 +11,11 @@ extends Enemy
 @export var target : CharacterBody2D
 @export var initial_speed : float = 300.0
 
-var speed : float 
-
 # Called every physics frame. 'delta' is the time between frames
 func _physics_process(_delta: float) -> void:
+	
+	# Set velocity as a value of the movement vector and any knockback
+	velocity = movement + knockback
 	
 	# Enables movement
 	move_and_slide()

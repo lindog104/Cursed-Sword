@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 class_name Enemy
 
 ## Base Enemy Class
