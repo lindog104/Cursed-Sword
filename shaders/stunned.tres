@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d75dqsfjm8mh"]
+
+[ext_resource type="Shader" path="res://shaders/stunned.gdshader" id="1_0ksdw"]
+
+[resource]
+shader = ExtResource("1_0ksdw")
+shader_parameter/rate_of_sway = 5.0
+shader_parameter/strength_of_sway = 5.0

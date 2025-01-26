@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bg18syghos0qw"]
+[gd_scene load_steps=23 format=3 uid="uid://bg18syghos0qw"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_qxqfq"]
 [ext_resource type="Script" path="res://scripts/sword_movement.gd" id="2_54six"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/hitbox_component.tscn" id="5_utacj"]
 [ext_resource type="Script" path="res://scripts/hosts/base_host_class.gd" id="6_50i67"]
 [ext_resource type="Texture2D" uid="uid://o0d4h0nqt0nc" path="res://assets/sprites/corpse.png" id="7_xgvfn"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="10_0d4wh"]
+[ext_resource type="Script" path="res://scripts/states/player/held.gd" id="11_8cx4v"]
+[ext_resource type="Script" path="res://scripts/states/player/thrown.gd" id="12_f17oo"]
+[ext_resource type="Script" path="res://scripts/states/player/dropped.gd" id="13_3dwvt"]
+[ext_resource type="Script" path="res://scripts/states/player/die.gd" id="14_rguc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qljx2"]
 size = Vector2(55, 94)
@@ -130,6 +135,7 @@ libraries = {
 }
 
 [node name="Sword" type="Sprite2D" parent="Pivot"]
+top_level = true
 position = Vector2(71.6841, -11.3636)
 rotation = 1.5708
 scale = Vector2(8, 8)
@@ -164,6 +170,26 @@ debug_color = Color(0.357073, 0.618121, 5.77569e-07, 0.42)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("10_0d4wh")
+initialState = NodePath("Held")
+
+[node name="Held" type="Node" parent="StateMachine" node_paths=PackedStringArray("host", "parent")]
+script = ExtResource("11_8cx4v")
+host = NodePath("../../Host")
+parent = NodePath("../..")
+
+[node name="Thrown" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("12_f17oo")
+parent = NodePath("../..")
+
+[node name="Dropped" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("13_3dwvt")
+parent = NodePath("../..")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("14_rguc8")
 
 [connection signal="animation_finished" from="Pivot/AnimationPlayer" to="Pivot" method="on_animation_finished"]
 

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1nlegpfi7t75"]
+
+[ext_resource type="Script" path="res://scripts/tempt_game.gd" id="1_ok8y4"]
+[ext_resource type="Texture2D" uid="uid://bu6p2amnwgn3k" path="res://icon.svg" id="2_waenk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_01pjg"]
+font_size = 48
+
+[node name="TemptGame" type="Node2D"]
+visible = false
+script = ExtResource("1_ok8y4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 156.0
+offset_top = 100.0
+offset_right = 196.0
+offset_bottom = 167.0
+text = "0"
+label_settings = SubResource("LabelSettings_01pjg")
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(568, 324)
+texture = ExtResource("2_waenk")
+
+[node name="Target" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.290196)
+position = Vector2(568, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("2_waenk")
+
+[node name="GrowthTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="GrowthTimer" to="." method="on_growth_timeout"]

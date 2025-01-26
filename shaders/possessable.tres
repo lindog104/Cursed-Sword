@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dggrvgmbr1un7"]
+
+[ext_resource type="Shader" path="res://shaders/possessable.gdshader" id="1_p04wu"]
+
+[resource]
+shader = ExtResource("1_p04wu")
+shader_parameter/rate_of_sway = 5.0
+shader_parameter/strength_of_sway = 4.0
+shader_parameter/rate_of_flash = 5.0
+shader_parameter/strength_of_flash = 4.0

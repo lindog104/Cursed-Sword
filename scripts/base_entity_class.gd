@@ -35,3 +35,9 @@ func get_knocked_back(kb_direction: Vector2, kb_modifier: float = 4.0, stop_time
 	knockback_tween = get_tree().create_tween()
 	knockback_tween.tween_property(self, "knockback", Vector2(0,0), stop_time)
 	
+
+# Called by the Hurtbox when damage taken
+# Generic version intended to be overwritten by each child
+# Accepts the current health from the hurtbox
+func on_damage_taken(_current_health: int) -> void:
+	pass

@@ -21,9 +21,6 @@ radius = 43.0116
 
 [node name="StateSlime" type="CharacterBody2D"]
 script = ExtResource("1_nxx33")
-initial_speed = null
-stun_threshhold = null
-speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -67,13 +64,15 @@ initialState = NodePath("Follow")
 script = ExtResource("7_mranj")
 parent = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("hitbox", "parent")]
 script = ExtResource("8_72o0q")
+hitbox = NodePath("../../HitboxComponent")
 initial_attack_time = 0.1
 parent = NodePath("../..")
 
-[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurtbox", "parent")]
 script = ExtResource("9_i1i11")
+hurtbox = NodePath("../../HurtboxComponent")
 parent = NodePath("../..")
 
 [node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]

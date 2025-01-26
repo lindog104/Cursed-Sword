@@ -37,6 +37,9 @@ func on_area_entered(area: Area2D) -> void:
 			
 			# If the owner is a child of the Entity class
 			if owner is Entity:
+				# Pass the current health to the owner
+				owner.on_damage_taken(health)
+				
 				# Pass the knockback from the Hitbox to the owner
 				owner.get_knocked_back(area.global_position.direction_to(global_position))
 	

@@ -6,8 +6,7 @@ extends State
 # Slime "aims, then jumps"
 # Transitions to Follow if target is too far away
 
-@onready var hitbox : HitboxComponent = $"../../HitboxComponent"
-
+@export var hitbox : HitboxComponent
 @export var initial_jump_speed : float = 800.0
 @export var initial_attack_time : float = 0.05
 @export var attack_cooldown : float = 2.0
@@ -23,9 +22,6 @@ func enter()-> void:
 	
 	# Turns on the hitbox
 	hitbox.turn_on()
-	
-	# Sets the parent's material to a slightly redder shade
-	parent.material = load("res://shaders/attacking.tres")
 
 # Called when transitioning out of this state
 func exit() -> void:
@@ -53,8 +49,11 @@ func physicsUpdate(delta: float) -> void:
 		
 	# If the attack timer has expired and the jump speed hasn't been cleared yet
 	elif attack_time <= 0 and jump_speed > 0:
-		# Clear jump speed
+		# Clear the jump speed to stop movement
 		jump_speed = 0.0
+		
+		# Clear the attacking shader
+		parent.material = null
 		
 		# Create a single use timer to handle the attack cooldown time
 		get_tree().create_timer(attack_cooldown).timeout.connect(on_cooldown_finished)
@@ -68,6 +67,9 @@ func on_cooldown_finished() -> void:
 		
 	# If the target is in range
 	else:
+		# Loads the attacking shader to warn the player of the attack
+		parent.material = load("res://shaders/attacking.tres")
+		
 		# Resets the variables
 		attack_time = initial_attack_time
 		jump_speed = initial_jump_speed
@@ -79,3 +81,4 @@ func on_hit_detected(_area: Area2D) -> void:
 	
 	# End the attack
 	attack_time = 0.0
+	
