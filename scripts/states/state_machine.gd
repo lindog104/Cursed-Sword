@@ -1,6 +1,13 @@
 extends Node
 class_name StateMachine
-# Custom class to handle state transistions
+
+## State Machine Class
+#
+# Represents a deterministic finite state machine
+# Stores any State children in a dictionary for quick reference
+# Handles transitions between States and the calling of functions that occur
+# when the State begins, ends, each frame, and each physics frame
+# Parent scene can also force transitions for the purpose of damage triggers
 
 @export var initialState : State
 var currentState : State

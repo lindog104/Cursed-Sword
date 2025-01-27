@@ -14,7 +14,7 @@ signal minigame_finished
 @onready var target: Sprite2D = $Target
 @onready var cursor: Sprite2D = $Cursor
 @onready var growth_timer: Timer = $GrowthTimer
-@onready var success_label: Label = $CanvasLayer/Label
+@onready var success_label: Label = $Label
 
 @export var growth_rate : float = 2.0
 @export var excess_growth_time : float = 0.5
@@ -79,7 +79,7 @@ func start_minigame() -> void:
 	growth_timer.wait_time = growth_rate + excess_growth_time
 	growth_timer.start()
 
-# Called when the minigame is won or lost
+# Called when the minigame result is known
 func end_minigame() -> void:
 	# Make the minigame invisible
 	hide()
@@ -91,14 +91,6 @@ func end_minigame() -> void:
 	if !growth_timer.is_stopped():
 		# Stop the timer
 		growth_timer.stop()
-	
-	# Checks if the player won the minigame
-	#if :
-		# Updates the game result flag
-		#player_won = true
-	
-	# Signal the completion of the game
-	minigame_finished.emit()
 
 # Called when the minigame is to be reset
 func reset_minigame() -> void:
@@ -110,9 +102,16 @@ func reset_minigame() -> void:
 		# Stop the timer
 		growth_timer.stop()
 	
-	# Checks if the score has reached the upper limit
-	
-	# Checks if the score has reached the lower limit
+	# If the score has reached the upper limit
+	if success_count >= 5:
+		# Update the flag and signal minigame completion
+		player_won = true
+		minigame_finished.emit()
+		
+	# If the score has reached the lower limit
+	elif success_count <= -3:
+		# Signal minigame completion since the flag is already false
+		minigame_finished.emit()
 	
 	# Reset the cursor size
 	cursor.scale = Vector2.ONE
@@ -121,7 +120,7 @@ func reset_minigame() -> void:
 	build_tween()
 	growth_timer.start()
 
-# Called in _ready and when the game is reset
+# Called when the game is reset or started
 func build_tween() -> void:
 	# Initialize the tween
 	cursor_tween = get_tree().create_tween()

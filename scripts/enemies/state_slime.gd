@@ -6,6 +6,8 @@ extends Enemy
 # Has inherent knowledge of the player's location, only moves when on screen,
 # attacks by bumping into the player, has movement cooldown
 
+@onready var interaction_area: InteractionArea = $InteractionArea
+
 @export var target : CharacterBody2D
 @export var initial_speed : float = 300.0
 

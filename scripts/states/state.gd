@@ -1,7 +1,11 @@
 extends Node
 class_name State
-# Parent class for states
 
+## Base State Class
+#
+# Establishes the generic versions of the State functions
+# A State is intended to be used to isolate portions of code that run 
+# independently to ease later modification
 
 # Signal to be used to trigger state transistions
 signal transitioned

@@ -7,3 +7,7 @@ class_name Enemy
 # Functions: 
 
 @export var stun_threshhold : float = 0.25
+
+# Called when the Player inputs to possess an enemy
+func pass_possession_info() -> void:
+	pass

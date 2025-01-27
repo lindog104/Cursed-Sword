@@ -117,7 +117,7 @@ size = Vector2(143, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glbux"]
 size = Vector2(83, 119)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("host")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("host") groups=["player"]]
 position = Vector2(640, 392)
 script = ExtResource("1_qxqfq")
 host = NodePath("Host")

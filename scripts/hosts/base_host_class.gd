@@ -46,3 +46,5 @@ func halt() -> void:
 func resume() -> void:
 	# Resets speed to its original value
 	speed = initial_speed
+
+# Maelle was here

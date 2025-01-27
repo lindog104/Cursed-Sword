@@ -15,6 +15,15 @@ run/main_scene="res://scenes/testground.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+InteractionManager="*res://scripts/interaction_manager.gd"
+SceneManager="*res://scripts/scene_manager.gd"
+
+[global_group]
+
+player=""
+
 [input]
 
 halt={
