@@ -8,13 +8,13 @@ extends Node2D
 # which one to display the prompt over, can also make prompt flash red if the
 # player is denied that interact (e.g. locked door)
 
-@onready var player: Entity = get_tree().get_first_node_in_group("player")
 @onready var label: Label = $Label
 
 const base_text = "[R] to\n"
 
 var active_areas: Array = []
 var can_interact: bool = true
+var player: Entity
 #var requires_holding: bool = false
 
 # Called by an InteractionArea node
@@ -35,8 +35,11 @@ func _process(_delta: float) -> void:
 		# Sorts active_areas so that the first node is the one closest to the player
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		
+		# Updates the interaction prompt text to match the current area
+		label.text = (active_areas[0].action_type_string + 
+		base_text + active_areas[0].action_name).to_upper()
+		
 		# Repositions the interaction prompt above the closest InteractionArea
-		label.text = (active_areas[0].action_type_string + base_text + active_areas[0].action_name).to_upper()
 		label.global_position = active_areas[0].global_position
 		label.global_position.y -= 44
 		label.global_position.x -= active_areas[0].centering_correction

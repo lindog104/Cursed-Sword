@@ -39,7 +39,8 @@ func get_knocked_back(kb_direction: Vector2, kb_modifier: float = 4.0, stop_time
 # Called by the Hurtbox when damage taken
 # Generic version intended to be overwritten by each child
 # Accepts the current health from the hurtbox
-func on_damage_taken(_current_health: int) -> void:
-	pass
+func on_damage_taken(current_health: int) -> void:
+	# Signal the SceneManager that health was changed
+	SceneManager.on_health_changed(current_health)
 
 # Maelle was here

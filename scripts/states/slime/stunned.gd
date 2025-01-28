@@ -6,6 +6,7 @@ extends State
 # When health below 25%, slime can be possessed
 
 @export var hurtbox : HurtboxComponent
+@export var interaction_area : InteractionArea
 
 var stun_timer : float = 1.0
 var possession_timer : float = 5.0
@@ -21,7 +22,9 @@ func enter()-> void:
 		parent.material = load("res://shaders/possessable.tres")
 		
 		# Signals the interaction area to make itself active
-		##Code needed here once interaction area's are implemented
+		interaction_area.turn_on()
+		interaction_area.action_name = "tempt"
+		interaction_area.interact = temptation_attempt
 		
 		# Starts the possessability timer
 		get_tree().create_timer(possession_timer).timeout.connect(on_stun_ended)
@@ -36,16 +39,18 @@ func enter()-> void:
 
 # Called when transitioning out of this state
 func exit() -> void:
+	# Disable the interaction area
+	interaction_area.turn_off()
+	
 	# Clear the parent's material
 	parent.material = null
 
-# Called every frame. 'delta' is the time between frames
-func update(_delta: float) -> void:
-	pass
-
-# Called every physics frame. 'delta' is the time between frames
-func physicsUpdate(_delta: float) -> void:
-	pass
+# Called when the Player Interacts with the InteractionArea
+func temptation_attempt() -> void:
+	# Signal the SceneManager to intiate the Temptation game
+	# Pass along the enemy that signaled and
+	# the Host that will be assigned to the player if successful
+	SceneManager.play_temptation_minigame(parent, parent.host_file)
 
 # Called when the stun or possessability timer expires
 func on_stun_ended() -> void:

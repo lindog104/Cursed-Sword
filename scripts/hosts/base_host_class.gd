@@ -6,8 +6,10 @@ class_name Host
 # Parent class for all Host scenes
 # Functions: move(), halt(), resume()
 
-var initial_speed : float = 300.0
-var speed : float
+@export var player_reference: Entity
+
+var initial_speed: float = 300.0
+var speed: float
 
 # Called when the scene enters the scene tree for the first time
 func _ready() -> void:

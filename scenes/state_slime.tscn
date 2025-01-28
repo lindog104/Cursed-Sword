@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://ba7pqrp1sr12"]
+[gd_scene load_steps=16 format=3 uid="uid://ba7pqrp1sr12"]
 
 [ext_resource type="Script" path="res://scripts/enemies/state_slime.gd" id="1_nxx33"]
+[ext_resource type="PackedScene" uid="uid://6xf3kdbwklk3" path="res://scenes/host-files/slime_host.tscn" id="2_a1ndu"]
 [ext_resource type="Texture2D" uid="uid://bkw5f85orddp0" path="res://assets/sprites/enemies/pixil-layer-Slime.png" id="2_muf55"]
 [ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/hurtbox_component.tscn" id="3_n8usa"]
 [ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/hitbox_component.tscn" id="4_g05hs"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="5_5emyv"]
-[ext_resource type="PackedScene" path="res://scenes/interaction_area.tscn" id="5_b4s56"]
+[ext_resource type="PackedScene" uid="uid://bhoilpadrbhic" path="res://scenes/interaction_area.tscn" id="5_b4s56"]
 [ext_resource type="Script" path="res://scripts/states/slime/follow.gd" id="7_mranj"]
 [ext_resource type="Script" path="res://scripts/states/slime/attack.gd" id="8_72o0q"]
 [ext_resource type="Script" path="res://scripts/states/slime/stunned.gd" id="9_i1i11"]
@@ -24,7 +25,10 @@ radius = 43.0116
 radius = 144.886
 
 [node name="StateSlime" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_nxx33")
+host_file = ExtResource("2_a1ndu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -41,7 +45,6 @@ target_desired_distance = 100.0
 debug_enabled = true
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_n8usa")]
-max_health = 50
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-1, 5)
@@ -81,13 +84,15 @@ hitbox = NodePath("../../HitboxComponent")
 initial_attack_time = 0.1
 parent = NodePath("../..")
 
-[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurtbox", "parent")]
+[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurtbox", "interaction_area", "parent")]
 script = ExtResource("9_i1i11")
 hurtbox = NodePath("../../HurtboxComponent")
+interaction_area = NodePath("../../InteractionArea")
 parent = NodePath("../..")
 
-[node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("interaction_area", "parent")]
 script = ExtResource("10_a38dp")
+interaction_area = NodePath("../../InteractionArea")
 parent = NodePath("../..")
 
 [connection signal="target_reached" from="NavigationAgent2D" to="StateMachine/Follow" method="on_target_reached"]

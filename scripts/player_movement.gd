@@ -4,34 +4,45 @@ extends Entity
 #
 # Handles the movement of the player character whether they have a Host or not
 
+@onready var pivot: Node2D = $Pivot
+
 @export var host : Host
 
 # Called every physics frame. 'delta' is the time between frames
 func _physics_process(_delta: float) -> void:
-	
-	# If the player is currently possessing a Host
-	if host:
-		# Call the Host's move function to the determine the movement vector
-		movement = host.move(global_position)
-	
 	# Set velocity as a value of the movement vector and any knockback
 	velocity = movement + knockback
 	
 	# Enable movement
 	move_and_slide()
 
-# Called whenever a key or input is pressed
-func _input(event: InputEvent) -> void:
-	# If the Halt action was pressed
-	if event.is_action_pressed("halt"):
-		# If the player has a Host
-		if host:
-			# Call the Host's halt function to stop movement
-			host.halt()
+# Called by the Hurtbox when damage taken
+func on_damage_taken(current_health: int) -> void:
+	# Signal the SceneManager that health was changed
+	SceneManager.on_health_changed(current_health)
 	
-	# If the Halt action was released
-	if event.is_action_released("halt"):
-		# If the player has a Host
-		if host:
-			# Call the Host's resume function to resume movement
-			host.resume()
+	# If Host body is dead
+	if current_health <= 0:
+		# Transition to the Dropped state
+		$StateMachine.on_external_state_change("dropped")
+		
+		# Remove the current Host scene
+		host.queue_free()
+
+# Called by the Held state when it is exited
+func disable_sword() -> void:
+	# Disable _process() and _input()
+	pivot.set_process(false)
+	pivot.set_process_input(false)
+	
+	# Update the flag
+	pivot.held = false
+
+# Called by the Dropped or Thrown state when it is exited
+func enable_sword() -> void:
+	# Enable _process() and _input()
+	pivot.set_process(true)
+	pivot.set_process_input(true)
+	
+	# Update the flag
+	pivot.held = true

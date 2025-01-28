@@ -13,7 +13,8 @@ func enter()-> void:
 
 # Called when transitioning out of this state
 func exit() -> void:
-	pass
+	# Enable Player control over the Sword
+	parent.enable_sword()
 
 # Called every frame. 'delta' is the time between frames
 func update(_delta: float) -> void:

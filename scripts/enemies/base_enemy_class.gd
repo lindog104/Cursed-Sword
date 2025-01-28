@@ -6,7 +6,8 @@ class_name Enemy
 # Parent class for all Enemy scenes
 # Functions: 
 
-@export var stun_threshhold : float = 0.25
+@export var stun_threshhold: float = 0.25
+@export var host_file: PackedScene
 
 # Called when the Player inputs to possess an enemy
 func pass_possession_info() -> void:

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://6xf3kdbwklk3"]
+
+[ext_resource type="Script" path="res://scripts/hosts/slime_host.gd" id="1_eo6ah"]
+[ext_resource type="Texture2D" uid="uid://bkw5f85orddp0" path="res://assets/sprites/enemies/pixil-layer-Slime.png" id="2_gsp81"]
+[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/hurtbox_component.tscn" id="3_rwj32"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5x63"]
+radius = 57.0
+
+[node name="SlimeHost" type="Node2D"]
+script = ExtResource("1_eo6ah")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("2_gsp81")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_rwj32")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_r5x63")
+debug_color = Color(0, 0.650181, 0.107927, 0.42)
+
+[editable path="HurtboxComponent"]

@@ -9,7 +9,7 @@ signal health_changed
 
 @onready var health : int = max_health
 
-@export var max_health : int = 100
+@export var max_health : int = 50
 
 # Disables the Area2D and its CollisionShape
 func turn_off() -> void:
@@ -27,8 +27,9 @@ func turn_on() -> void:
 
 # Triggered when an Area2D overlaps with this one
 func on_area_entered(area: Area2D) -> void:
-	# If the detected area has a different parent
-	if area.get_parent() != get_parent():
+	# If the detected area has a different parent and grandparent
+	if (area.get_parent() != get_parent() 
+	and area.get_parent().get_parent() != get_parent().get_parent()):
 		# If the detected area was a Hitbox
 		if area is HitboxComponent:
 			# Reduce health by the Hitbox's damage
@@ -42,4 +43,13 @@ func on_area_entered(area: Area2D) -> void:
 				
 				# Pass the knockback from the Hitbox to the owner
 				owner.get_knocked_back(area.global_position.direction_to(global_position))
+				
+			# If the owner is a child of the Host class
+			elif owner is Host:
+				# Pass the current health through the host to the owner
+				owner.player_reference.on_damage_taken(health)
+				
+				# Pass the knockback from the Hitbox through the host to the owner
+				owner.player_reference.get_knocked_back(
+					area.global_position.direction_to(global_position))
 	

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dun7276ajchf1"]
+[gd_scene load_steps=3 format=3 uid="uid://dun7276ajchf1"]
 
 [ext_resource type="Script" path="res://scripts/interaction_manager.gd" id="1_pmvpo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_djg4r"]
+font_size = 48
 
 [node name="InteractionManager" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -20,5 +23,6 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "[E] TO
 INTERACT"
+label_settings = SubResource("LabelSettings_djg4r")
 horizontal_alignment = 1
 vertical_alignment = 1

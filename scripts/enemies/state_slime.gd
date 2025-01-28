@@ -9,7 +9,7 @@ extends Enemy
 @onready var interaction_area: InteractionArea = $InteractionArea
 
 @export var target : CharacterBody2D
-@export var initial_speed : float = 300.0
+@export var initial_speed : float = 200.0
 
 # Called every physics frame. 'delta' is the time between frames
 func _physics_process(_delta: float) -> void:

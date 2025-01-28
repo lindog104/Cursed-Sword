@@ -71,7 +71,7 @@ func on_child_transition(sourceState: State, newStateName: String) -> void:
 	
 	# Enters the newState
 	newState.enter()
-	#print(newStateName)
+	print("Internal: ", newStateName)
 	
 	# Assigns the newState as the currentState
 	currentState = newState
@@ -92,7 +92,7 @@ func on_external_state_change(newStateName: String) -> void:
 	
 	# Enters the newState
 	newState.enter()
-	#print(newStateName)
+	print("External: ", newStateName)
 	
 	# Assigns the newState as the currentState
 	currentState = newState

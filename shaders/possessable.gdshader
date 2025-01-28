@@ -20,11 +20,11 @@ void vertex() {
 void fragment() {
 	// Measures the total amount of color in the pixel
 	float mask = length(COLOR.rgb);
-	
+
 	// Levels out the rgb of each pixel
 	// rate_of_flash is the speed of the flashing
 	COLOR.rgb += vec3(mask) * abs(sin(TIME * rate_of_flash));
-	
+
 	// Checks if the pixel is not transparent
 	if (COLOR.a > 0.0) {
 		// Makes the pixel's slightly transparent

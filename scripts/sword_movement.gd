@@ -7,6 +7,8 @@ extends Node2D
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var hitbox : HitboxComponent = $HitboxComponent
 
+var held: bool = true
+
 # Called every frame. 'delta' is the time between frames
 func _process(_delta: float) -> void:
 	# Rotates the node to point towards the provided vector
