@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1nlegpfi7t75"]
+[gd_scene load_steps=5 format=3 uid="uid://b1nlegpfi7t75"]
 
+[ext_resource type="Script" path="res://scripts/ui/tempt_game_passdown.gd" id="1_cyy5c"]
 [ext_resource type="Script" path="res://scripts/ui/tempt_game.gd" id="1_ok8y4"]
 [ext_resource type="Texture2D" uid="uid://bu6p2amnwgn3k" path="res://icon.svg" id="2_waenk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_01pjg"]
 font_size = 48
 
-[node name="TemptGame" type="CanvasLayer"]
-visible = false
+[node name="TemptGameHolder" type="CanvasLayer"]
+script = ExtResource("1_cyy5c")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="TemptGame" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_ok8y4")
 
-[node name="Label" type="Label" parent="Node2D"]
+[node name="Label" type="Label" parent="TemptGame"]
 offset_left = 156.0
 offset_top = 100.0
 offset_right = 196.0
@@ -20,16 +22,16 @@ offset_bottom = 167.0
 text = "0"
 label_settings = SubResource("LabelSettings_01pjg")
 
-[node name="Cursor" type="Sprite2D" parent="Node2D"]
+[node name="Cursor" type="Sprite2D" parent="TemptGame"]
 position = Vector2(568, 324)
 texture = ExtResource("2_waenk")
 
-[node name="Target" type="Sprite2D" parent="Node2D"]
+[node name="Target" type="Sprite2D" parent="TemptGame"]
 modulate = Color(1, 1, 1, 0.290196)
 position = Vector2(568, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("2_waenk")
 
-[node name="GrowthTimer" type="Timer" parent="Node2D"]
+[node name="GrowthTimer" type="Timer" parent="TemptGame"]
 
-[connection signal="timeout" from="Node2D/GrowthTimer" to="." method="on_growth_timeout"]
+[connection signal="timeout" from="TemptGame/GrowthTimer" to="TemptGame" method="on_growth_timeout"]

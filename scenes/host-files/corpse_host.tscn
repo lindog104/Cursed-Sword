@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkpjm5scljunl"]
 
 [ext_resource type="Script" path="res://scripts/hosts/corpse_host.gd" id="1_h7o8n"]
-[ext_resource type="Texture2D" uid="uid://o0d4h0nqt0nc" path="res://assets/sprites/corpse.png" id="2_sa4va"]
+[ext_resource type="Texture2D" uid="uid://b2icot88k56t5" path="res://assets/sprites/enemies/Corpse/corpse_front.png" id="2_bwcf8"]
 [ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_q74ys"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ude5h"]
@@ -11,7 +11,7 @@ size = Vector2(6, 9)
 script = ExtResource("1_h7o8n")
 
 [node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_sa4va")
+texture = ExtResource("2_bwcf8")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_q74ys")]
 

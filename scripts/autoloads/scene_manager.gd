@@ -24,22 +24,23 @@ func on_health_changed(current_health: int) -> void:
 # Or a Stunned enemy signaling a temptation input
 func play_temptation_minigame(caller: Node2D, target_host: PackedScene, dropped: bool = false) -> void:
 	# If the current scene does not already have the Temptation game as a child
-	if !get_tree().current_scene.has_node("TemptGame"):
+	if !get_tree().current_scene.has_node("TemptGameHolder"):
 		# Add it
 		get_tree().current_scene.add_child(tempt_game.instantiate())
 	
 	# Initialize a reference to the current scene's Temptation game child
-	var temptation_game: CanvasLayer = get_tree().current_scene.get_node("TemptGame")
+	var temptation_game: CanvasLayer = get_tree().current_scene.get_node("TemptGameHolder")
 	
 	# Initialize the acceleration factor that is applied to the minigame
 	# to make it appear as normal time
-	var speedup_modifier : float = 1 / percent_of_slowdown
+	var speedup_modifier : float = 1.8 / percent_of_slowdown
 	
-	# Slow down the game
+	# Slow down the game and halt the player's movement
 	Engine.time_scale = percent_of_slowdown
+	player.host.halt()
 	
 	# Call the minigame and store its result
-	var player_won_minigame = temptation_game.play_minigame(speedup_modifier)
+	var player_won_minigame = await temptation_game.play_minigame(speedup_modifier)
 	
 	# If the minigame was won
 	if player_won_minigame:
@@ -55,8 +56,9 @@ func play_temptation_minigame(caller: Node2D, target_host: PackedScene, dropped:
 		# Handle temptation failure
 		pass
 	
-	# Resume normal speed
+	# Resume normal speed and return control to the player
 	Engine.time_scale = 1.0
+	player.host.resume()
 
 # Triggered by a Dead enemy signaling a possession input
 # Or called internally when Tempt successful

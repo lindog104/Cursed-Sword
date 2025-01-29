@@ -128,13 +128,13 @@ script = ExtResource("2_54six")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
 libraries = {
-"SwordAnimations": SubResource("AnimationLibrary_ou5fm")
+"": SubResource("AnimationLibrary_ou5fm")
 }
 
 [node name="Sword" type="Sprite2D" parent="Pivot"]
 z_index = 3
 position = Vector2(6, 0)
-rotation = 2.61799
+rotation = 1.5708
 texture = ExtResource("4_4ap8g")
 offset = Vector2(1.42041, -9.4145)
 

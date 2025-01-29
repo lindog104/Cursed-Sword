@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bk4oaiul40jh"]
 
 [ext_resource type="Script" path="res://scripts/hosts/peasant_host.gd" id="1_vq27j"]
-[ext_resource type="Texture2D" uid="uid://sw847251kead" path="res://assets/sprites/enemies/peasant.png" id="2_7go54"]
+[ext_resource type="Texture2D" uid="uid://k0ijhlntxvyn" path="res://assets/sprites/enemies/Boy/boy_front.png" id="2_7go54"]
 [ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_fcacj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0v5pv"]

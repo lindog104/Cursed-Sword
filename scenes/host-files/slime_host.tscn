@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6xf3kdbwklk3"]
 
 [ext_resource type="Script" path="res://scripts/hosts/slime_host.gd" id="1_eo6ah"]
-[ext_resource type="Texture2D" uid="uid://bkw5f85orddp0" path="res://assets/sprites/enemies/pixil-layer-Slime.png" id="2_gsp81"]
+[ext_resource type="Texture2D" uid="uid://bpebgrjc6mpj3" path="res://assets/sprites/enemies/Slime/slime_front.png" id="2_gsp81"]
 [ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_rwj32"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhrbc"]

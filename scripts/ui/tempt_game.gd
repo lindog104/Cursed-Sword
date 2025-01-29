@@ -20,7 +20,7 @@ signal minigame_finished
 @export var excess_growth_time : float = 0.5
 var cursor_tween : Tween
 var success_count : int
-var tolerance : float = 0.05
+var tolerance : float = 0.08
 var player_won : bool
 
 # Called whenever a key or input is pressed

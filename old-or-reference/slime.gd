@@ -8,7 +8,6 @@ extends Enemy
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
-@export var target : CharacterBody2D
 @export var initial_speed : float = 300.0
 @export var movement_cooldown : float = 1.5
 
