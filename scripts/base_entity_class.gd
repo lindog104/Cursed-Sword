@@ -5,12 +5,20 @@ class_name Entity
 #
 # Base parent class for all things that can move, have health and/or be knocked back
 
-@export var speed : float = 300.0
+@export var speed : float = 30.0
 
 var movement : Vector2 
 
 var knockback : Vector2
 var knockback_tween : Tween
+
+# Called every physics frame. 'delta' is the time between frames
+func _physics_process(_delta: float) -> void:
+	# Set velocity as a value of the movement vector and any knockback
+	velocity = movement + knockback
+	
+	# Enable movement
+	move_and_slide()
 
 # Called by the Hurtbox when knockback received
 # Accepts a direction vector, a strength modifier, and a max time as parameters
@@ -20,8 +28,8 @@ func get_knocked_back(kb_direction: Vector2, kb_modifier: float = 4.0, stop_time
 	var kb: float = abs(velocity.x) * kb_modifier
 	
 	# Establishes the minimum amount of knockback using the parent's base speed
-	# If the parent's speed is less than 300, it uses that instead
-	kb = maxf(kb, (maxf(300.0,speed) / 2.5) * kb_modifier)
+	# If the parent's speed is less than 20, it uses that instead
+	kb = maxf(kb, (maxf(20.0,speed) / 2.5) * kb_modifier)
 	
 	# Initializes the directional knockback vector
 	knockback = Vector2(kb, kb) * kb_direction.normalized()

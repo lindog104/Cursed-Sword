@@ -11,14 +11,18 @@ config_version=5
 [application]
 
 config/name="Cursed Sword Project"
-run/main_scene="res://scenes/testground.tscn"
+run/main_scene="res://scenes/levels/testground.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-InteractionManager="*res://scenes/interaction_manager.tscn"
-SceneManager="*res://scenes/scene_manager.tscn"
+InteractionManager="*res://scenes/autoloads/interaction_manager.tscn"
+SceneManager="*res://scenes/autoloads/scene_manager.tscn"
+
+[display]
+
+window/size/initial_position=Vector2i(0, -100)
 
 [global_group]
 

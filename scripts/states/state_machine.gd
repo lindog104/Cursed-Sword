@@ -88,14 +88,15 @@ func on_external_state_change(newStateName: String) -> void:
 	
 	# Exits the currentState
 	if currentState:
-		currentState.exit()
+		currentState.exit.call_deferred()
 	
 	# Enters the newState
-	newState.enter()
+	newState.enter.call_deferred()
 	print("External: ", newStateName)
 	
 	# Assigns the newState as the currentState
-	currentState = newState
+	#currentState = newState
+	set_deferred("currentState", newState)
 
 # Called when the final State emits the finished signal
 # Shuts off the State Machine

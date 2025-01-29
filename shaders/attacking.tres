@@ -4,3 +4,5 @@
 
 [resource]
 shader = ExtResource("1_bfef0")
+shader_parameter/rate_of_flash = 2.0
+shader_parameter/rate_of_vibrate = 25.0

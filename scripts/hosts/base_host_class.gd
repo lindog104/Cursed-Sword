@@ -7,8 +7,10 @@ class_name Host
 # Functions: move(), halt(), resume()
 
 @export var player_reference: Entity
+@export var front_sprite: Sprite2D
+@export var back_sprite: Sprite2D
 
-var initial_speed: float = 300.0
+var initial_speed: float = 50.0
 var speed: float
 
 # Called when the scene enters the scene tree for the first time

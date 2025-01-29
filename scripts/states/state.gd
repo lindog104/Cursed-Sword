@@ -8,9 +8,11 @@ class_name State
 # independently to ease later modification
 
 # Signal to be used to trigger state transistions
+@warning_ignore("unused_signal")
 signal transitioned
 
 # Signal to be used to trigger end of state machine
+@warning_ignore("unused_signal")
 signal finished
 
 # Export to hold the parent node of the state machine

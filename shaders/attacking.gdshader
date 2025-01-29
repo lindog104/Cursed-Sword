@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform float rate_of_flash = 2.0;
-uniform float rate_of_vibrate = 25.0;
+uniform float rate_of_flash = 3.0;
+uniform float rate_of_vibrate = 40.0;
 
 // Called for every vertex of the image
 // Makes the whole image jitter left and right
