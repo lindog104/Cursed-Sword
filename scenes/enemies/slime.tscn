@@ -1,0 +1,107 @@
+[gd_scene load_steps=16 format=3 uid="uid://ba7pqrp1sr12"]
+
+[ext_resource type="Script" path="res://scripts/enemies/slime/slime.gd" id="1_nxx33"]
+[ext_resource type="PackedScene" uid="uid://6xf3kdbwklk3" path="res://scenes/host-files/slime_host.tscn" id="2_a1ndu"]
+[ext_resource type="Texture2D" uid="uid://bpebgrjc6mpj3" path="res://assets/sprites/enemies/Slime/slime_front.png" id="3_cdyd6"]
+[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_n8usa"]
+[ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/components/hitbox_component.tscn" id="4_g05hs"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="5_5emyv"]
+[ext_resource type="PackedScene" uid="uid://bhoilpadrbhic" path="res://scenes/components/interaction_area.tscn" id="5_b4s56"]
+[ext_resource type="Script" path="res://scripts/enemies/slime/follow_state.gd" id="7_mranj"]
+[ext_resource type="Script" path="res://scripts/enemies/slime/attack_state.gd" id="8_72o0q"]
+[ext_resource type="Script" path="res://scripts/enemies/slime/stunned_state.gd" id="9_i1i11"]
+[ext_resource type="Script" path="res://scripts/enemies/slime/death_state.gd" id="10_a38dp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eumq4"]
+size = Vector2(12, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_06l5c"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_id38e"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwsql"]
+radius = 13.0
+
+[node name="Slime" type="CharacterBody2D"]
+scale = Vector2(0.8, 0.8)
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_nxx33")
+initial_speed = 40.0
+host_file = ExtResource("2_a1ndu")
+speed = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_cdyd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_eumq4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 20.0
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_n8usa")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_06l5c")
+debug_color = Color(0.202721, 0.640799, 0, 0.42)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_g05hs")]
+damage = 25
+disabled = true
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_id38e")
+
+[node name="InteractionArea" parent="." instance=ExtResource("5_b4s56")]
+action_name = "possess"
+disabled = true
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_vwsql")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(0.6, 0.5)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("5_5emyv")
+initialState = NodePath("Follow")
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("7_mranj")
+parent = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("hitbox", "parent")]
+script = ExtResource("8_72o0q")
+hitbox = NodePath("../../HitboxComponent")
+parent = NodePath("../..")
+
+[node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurtbox", "interaction_area", "parent")]
+script = ExtResource("9_i1i11")
+hurtbox = NodePath("../../HurtboxComponent")
+interaction_area = NodePath("../../InteractionArea")
+parent = NodePath("../..")
+
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("interaction_area", "hitbox", "hurtbox", "collision_shape", "parent")]
+script = ExtResource("10_a38dp")
+interaction_area = NodePath("../../InteractionArea")
+hitbox = NodePath("../../HitboxComponent")
+hurtbox = NodePath("../../HurtboxComponent")
+collision_shape = NodePath("../../CollisionShape2D")
+parent = NodePath("../..")
+
+[connection signal="target_reached" from="NavigationAgent2D" to="StateMachine/Follow" method="on_target_reached"]
+[connection signal="area_entered" from="HitboxComponent" to="StateMachine/Attack" method="on_hit_detected"]
+
+[editable path="HurtboxComponent"]
+[editable path="HitboxComponent"]
+[editable path="InteractionArea"]

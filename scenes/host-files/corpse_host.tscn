@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkpjm5scljunl"]
+
+[ext_resource type="Script" path="res://scripts/hosts/corpse_host.gd" id="1_h7o8n"]
+[ext_resource type="Texture2D" uid="uid://b2icot88k56t5" path="res://assets/sprites/enemies/Corpse/corpse_front.png" id="2_bwcf8"]
+[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_q74ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ude5h"]
+size = Vector2(6, 9)
+
+[node name="CorpseHost" type="Node2D"]
+script = ExtResource("1_h7o8n")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_bwcf8")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_q74ys")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_ude5h")
+debug_color = Color(0, 0.645547, 0.257677, 0.42)
+
+[editable path="HurtboxComponent"]

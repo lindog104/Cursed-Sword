@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bcnudqiqq0shd"]
+
+[ext_resource type="Shader" path="res://shaders/attacking.gdshader" id="1_bfef0"]
+
+[resource]
+shader = ExtResource("1_bfef0")
+shader_parameter/rate_of_flash = 2.0
+shader_parameter/rate_of_vibrate = 25.0
