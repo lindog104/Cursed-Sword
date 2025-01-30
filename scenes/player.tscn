@@ -1,31 +1,177 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg18syghos0qw"]
+[gd_scene load_steps=19 format=3 uid="uid://bg18syghos0qw"]
 
-[ext_resource type="Script" path="res://scripts/host.gd" id="1_3grgv"]
-[ext_resource type="Texture2D" uid="uid://bu6p2amnwgn3k" path="res://icon.svg" id="1_evoku"]
-[ext_resource type="Script" path="res://scripts/sword.gd" id="2_54six"]
+[ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_qxqfq"]
+[ext_resource type="Script" path="res://scripts/player/sword_movement.gd" id="2_54six"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Rusty_sword.png" id="4_4ap8g"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Sword_Swing.png" id="4_varg3"]
+[ext_resource type="Shader" path="res://shaders/white_mask.gdshader" id="5_1dufx"]
+[ext_resource type="PackedScene" path="res://scenes/components/hitbox_component.tscn" id="5_utacj"]
+[ext_resource type="PackedScene" path="res://scenes/host-files/corpse_host.tscn" id="7_pkqts"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="10_0d4wh"]
+[ext_resource type="Script" path="res://scripts/player/held_state.gd" id="11_8cx4v"]
+[ext_resource type="Script" path="res://scripts/player/thrown_state.gd" id="12_f17oo"]
+[ext_resource type="Script" path="res://scripts/player/dropped_state.gd" id="13_3dwvt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_17tin"]
-size = Vector2(112.5, 111)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qljx2"]
+size = Vector2(6, 6.5)
 
-[node name="Player" type="CharacterBody2D"]
-position = Vector2(640, 392)
-script = ExtResource("1_3grgv")
+[sub_resource type="Animation" id="Animation_wmueb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_4ap8g")]
+}
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("1_evoku")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rog2q"]
+shader = ExtResource("5_1dufx")
+
+[sub_resource type="Animation" id="Animation_3ybu6"]
+resource_name = "parry"
+length = 0.26667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0472, 1.0472, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [null, SubResource("ShaderMaterial_rog2q"), SubResource("ShaderMaterial_rog2q"), null]
+}
+
+[sub_resource type="Animation" id="Animation_p547c"]
+resource_name = "swing"
+length = 0.26667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.61799, 0.523599, 0.523599]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_4ap8g"), ExtResource("4_varg3"), ExtResource("4_4ap8g")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou5fm"]
+_data = {
+"RESET": SubResource("Animation_wmueb"),
+"parry": SubResource("Animation_3ybu6"),
+"swing": SubResource("Animation_p547c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpxnh"]
+size = Vector2(17, 6)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("host") groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_qxqfq")
+speed = null
+host = NodePath("CorpseHost")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_17tin")
+position = Vector2(-1, 2.75)
+shape = SubResource("RectangleShape2D_qljx2")
 
 [node name="Pivot" type="Node2D" parent="."]
+position = Vector2(-1, 1)
 script = ExtResource("2_54six")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+libraries = {
+"": SubResource("AnimationLibrary_ou5fm")
+}
+
 [node name="Sword" type="Sprite2D" parent="Pivot"]
-modulate = Color(0.329158, 0.329158, 0.329158, 1)
-position = Vector2(147, 0)
+z_index = 3
+position = Vector2(6, 0)
 rotation = 1.5708
-scale = Vector2(0.25, 1.25)
-texture = ExtResource("1_evoku")
+texture = ExtResource("4_4ap8g")
+offset = Vector2(1.42041, -9.4145)
+
+[node name="HitboxComponent" parent="Pivot" instance=ExtResource("5_utacj")]
+damage = 25
+disabled = true
+
+[node name="CollisionShape2D" parent="Pivot/HitboxComponent" index="0"]
+position = Vector2(16.5, 0)
+shape = SubResource("RectangleShape2D_cpxnh")
+debug_color = Color(0.994694, 0, 0.217901, 0.42)
+
+[node name="CorpseHost" parent="." node_paths=PackedStringArray("player_reference") instance=ExtResource("7_pkqts")]
+player_reference = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("10_0d4wh")
+initialState = NodePath("Held")
+
+[node name="Held" type="Node" parent="StateMachine" node_paths=PackedStringArray("host", "parent")]
+script = ExtResource("11_8cx4v")
+host = NodePath("../../CorpseHost")
+parent = NodePath("../..")
+
+[node name="Thrown" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("12_f17oo")
+parent = NodePath("../..")
+
+[node name="Dropped" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("13_3dwvt")
+parent = NodePath("../..")
+
+[connection signal="animation_finished" from="Pivot/AnimationPlayer" to="Pivot" method="on_animation_finished"]
+
+[editable path="Pivot/HitboxComponent"]
