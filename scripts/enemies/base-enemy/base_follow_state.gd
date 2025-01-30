@@ -7,7 +7,7 @@ class_name FollowState
 # Enemy moves directly towards its target until it gets within attack range
 # Transitions to Attack when in attack range
 
-@onready var nav_agent: NavigationAgent2D = $"../../NavigationAgent2D"
+@export var nav_agent: NavigationAgent2D
 
 # Called when transitioning into this state 
 func enter()-> void:

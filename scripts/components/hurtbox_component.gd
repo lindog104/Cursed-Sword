@@ -10,6 +10,14 @@ signal health_changed
 @onready var health : int = max_health
 
 @export var max_health : int = 50
+@export var disabled: bool = false
+
+# Called when the scene enters the scene tree for the first time
+func _ready() -> void:
+	# If Hurtbox is initially disabled
+	if disabled:
+		# Turn it off
+		turn_off()
 
 # Disables the Area2D and its CollisionShape
 func turn_off() -> void:
@@ -32,24 +40,28 @@ func on_area_entered(area: Area2D) -> void:
 	and area.get_parent().get_parent() != get_parent().get_parent()):
 		# If the detected area was a Hitbox
 		if area is HitboxComponent:
-			# Reduce health by the Hitbox's damage
-			health -= area.damage
-			health_changed.emit(health) 
-			
-			# If the owner is a child of the Entity class
-			if owner is Entity:
-				# Pass the current health to the owner
-				owner.on_damage_taken(health)
-				
-				# Pass the knockback from the Hitbox to the owner
-				owner.get_knocked_back(area.global_position.direction_to(global_position))
-				
-			# If the owner is a child of the Host class
-			elif owner is Host:
-				# Pass the current health through the host to the owner
-				owner.player_reference.on_damage_taken(health)
-				
-				# Pass the knockback from the Hitbox through the host to the owner
-				owner.player_reference.get_knocked_back(
-					area.global_position.direction_to(global_position))
+			# Accept the damage
+			damage_taken(area)
+
+# Called when the detected area is a valid hitbox
+func damage_taken(area: Area2D) -> void:
+	# Reduce health by the Hitbox's damage
+	health -= area.damage
+	health_changed.emit(health) 
 	
+	# If the owner is a child of the Entity class
+	if owner is Entity:
+		# Pass the current health to the owner
+		owner.on_damage_taken(health)
+		
+		# Pass the knockback from the Hitbox to the owner
+		owner.get_knocked_back(area.global_position.direction_to(global_position))
+		
+	# If the owner is a child of the Host class
+	elif owner is Host:
+		# Pass the current health through the host to the owner
+		owner.player_reference.on_damage_taken(health)
+		
+		# Pass the knockback from the Hitbox through the host to the owner
+		owner.player_reference.get_knocked_back(
+		area.global_position.direction_to(global_position))

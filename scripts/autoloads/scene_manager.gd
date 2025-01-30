@@ -77,6 +77,7 @@ func pass_new_host(caller: Node2D, target_host: PackedScene, tempted: bool = fal
 	if tempted:
 		# Reset the player's health to 3 hits
 		hud.update_health(75)
+		player.spell_component.regain_soul(new_host.regain_amount)
 	# If new host is from a dead enemy
 	else:
 		# Reset the player's health to two hits
@@ -111,3 +112,13 @@ func on_player_death() -> void:
 	
 	# Display the Game Over Screen
 	get_tree().current_scene.add_child(game_over.instantiate())
+
+# Called by the PlayerSpellComponent when the player inputs a spell
+func on_spell_attempt(index: int, cooldown: int, cost: int, failed: bool = false) -> void:
+	check_hud_reference()
+	if failed:
+		hud.spell_icon.failed_spell()
+	else:
+		hud.spell_icon.successful_spell(cooldown)
+		hud.update_soul(-cost)
+	

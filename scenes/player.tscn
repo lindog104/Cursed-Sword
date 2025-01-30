@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bg18syghos0qw"]
+[gd_scene load_steps=21 format=3 uid="uid://bg18syghos0qw"]
 
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_qxqfq"]
 [ext_resource type="Script" path="res://scripts/player/sword_movement.gd" id="2_54six"]
@@ -7,6 +7,8 @@
 [ext_resource type="Shader" path="res://shaders/white_mask.gdshader" id="5_1dufx"]
 [ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/components/hitbox_component.tscn" id="5_utacj"]
 [ext_resource type="PackedScene" uid="uid://dkpjm5scljunl" path="res://scenes/host-files/corpse_host.tscn" id="7_pkqts"]
+[ext_resource type="Script" path="res://scripts/components/player_spell_component.gd" id="8_gtws6"]
+[ext_resource type="PackedScene" uid="uid://e5yacrd0fywv" path="res://scenes/spells/shield_spell.tscn" id="9_c775r"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="10_0d4wh"]
 [ext_resource type="Script" path="res://scripts/player/held_state.gd" id="11_8cx4v"]
 [ext_resource type="Script" path="res://scripts/player/thrown_state.gd" id="12_f17oo"]
@@ -149,6 +151,13 @@ debug_color = Color(0.994694, 0, 0.217901, 0.42)
 
 [node name="CorpseHost" parent="." node_paths=PackedStringArray("player_reference") instance=ExtResource("7_pkqts")]
 player_reference = NodePath("..")
+
+[node name="SpellComponent" type="Node2D" parent="."]
+script = ExtResource("8_gtws6")
+max_energy = null
+regen = null
+
+[node name="ShieldSpell" parent="SpellComponent" instance=ExtResource("9_c775r")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

@@ -9,6 +9,7 @@ class_name Host
 @export var player_reference: Entity
 @export var front_sprite: Sprite2D
 @export var back_sprite: Sprite2D
+@export var regain_amount: int = 0
 
 var initial_speed: float = 50.0
 var speed: float

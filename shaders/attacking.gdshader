@@ -13,8 +13,8 @@ void vertex() {
 
 // Called for every pixel in the image
 // Makes the image flash red on and off
-void fragment() {
-	// Raises the red value from 0 to 1
-	// rate_of_flash is the speed of the flashing
-	COLOR.r = abs(tan(TIME * rate_of_flash));
-}
+//void fragment() {
+	//// Raises the red value from 0 to 1
+	//// rate_of_flash is the speed of the flashing
+	//COLOR.r = abs(tan(TIME * rate_of_flash));
+//}

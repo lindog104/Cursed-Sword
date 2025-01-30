@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dlaeleu6opx7f"]
+[gd_scene load_steps=13 format=4 uid="uid://dlaeleu6opx7f"]
 
 [ext_resource type="PackedScene" uid="uid://3ld8lrwfhpet" path="res://scenes/ui/hud.tscn" id="1_1fj0v"]
 [ext_resource type="PackedScene" uid="uid://bg18syghos0qw" path="res://scenes/player.tscn" id="1_04q76"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b326fq152058u" path="res://assets/environment/floor_tiles.png" id="2_24heh"]
 [ext_resource type="PackedScene" uid="uid://niuj0cq75555" path="res://scenes/chest.tscn" id="6_2dpid"]
 [ext_resource type="PackedScene" uid="uid://u0xy23cx0psr" path="res://scenes/enemies/peasant.tscn" id="6_3e1op"]
+[ext_resource type="PackedScene" uid="uid://0pq0g1yap23e" path="res://scenes/enemies/knight.tscn" id="7_5wwil"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3bcey"]
 tile_data = PackedInt32Array(0, 262144, 0, 65536, 262144, 0, 131072, 393216, 0, 1, 393216, 1, 65537, 0, 0, 131073, 262144, 0, 2, 458752, 1, 65538, 458752, 1, 131074, 458752, 0)
@@ -69,3 +70,6 @@ navigation_polygon = SubResource("NavigationPolygon_58atq")
 
 [node name="Peasant" parent="." instance=ExtResource("6_3e1op")]
 position = Vector2(245, 111)
+
+[node name="Knight" parent="." instance=ExtResource("7_5wwil")]
+position = Vector2(329, 71)
