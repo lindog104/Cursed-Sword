@@ -1,0 +1,29 @@
+[gd_resource type="AnimatedTexture" load_steps=6 format=3 uid="uid://b13jtcxqmkhai"]
+
+[ext_resource type="Texture2D" uid="uid://drxc16mu6i7kr" path="res://assets/Gui Elements/soul_sword_full.png" id="1_j1dol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87hsh"]
+atlas = ExtResource("1_j1dol")
+region = Rect2(0, 0, 61, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a000x"]
+atlas = ExtResource("1_j1dol")
+region = Rect2(64, 0, 61, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rghpy"]
+atlas = ExtResource("1_j1dol")
+region = Rect2(128, 0, 61, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve7v1"]
+atlas = ExtResource("1_j1dol")
+region = Rect2(192, 0, 61, 41)
+
+[resource]
+frames = 4
+frame_0/texture = SubResource("AtlasTexture_87hsh")
+frame_1/texture = SubResource("AtlasTexture_a000x")
+frame_1/duration = 1.0
+frame_2/texture = SubResource("AtlasTexture_rghpy")
+frame_2/duration = 1.0
+frame_3/texture = SubResource("AtlasTexture_ve7v1")
+frame_3/duration = 1.0

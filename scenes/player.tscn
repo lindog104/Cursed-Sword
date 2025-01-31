@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bg18syghos0qw"]
+[gd_scene load_steps=22 format=3 uid="uid://bg18syghos0qw"]
 
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_qxqfq"]
 [ext_resource type="Script" path="res://scripts/player/sword_movement.gd" id="2_54six"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://byglp01ow4km5" path="res://assets/sprites/Sword_Swing.png" id="4_varg3"]
 [ext_resource type="Shader" path="res://shaders/white_mask.gdshader" id="5_1dufx"]
 [ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/components/hitbox_component.tscn" id="5_utacj"]
+[ext_resource type="AudioStream" uid="uid://drhsxxjdrnwm7" path="res://sfx/sword-swing.wav" id="6_meb5i"]
 [ext_resource type="PackedScene" uid="uid://dkpjm5scljunl" path="res://scenes/host-files/corpse_host.tscn" id="7_pkqts"]
+[ext_resource type="Script" path="res://scripts/components/player_spell_component.gd" id="8_3kyf2"]
+[ext_resource type="PackedScene" uid="uid://e5yacrd0fywv" path="res://scenes/spells/shield_spell.tscn" id="9_cips4"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="10_0d4wh"]
 [ext_resource type="Script" path="res://scripts/player/held_state.gd" id="11_8cx4v"]
 [ext_resource type="Script" path="res://scripts/player/thrown_state.gd" id="12_f17oo"]
@@ -131,6 +134,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ou5fm")
 }
 
+[node name="SwordSwingAudioPlayer" type="AudioStreamPlayer2D" parent="Pivot"]
+stream = ExtResource("6_meb5i")
+
 [node name="Sword" type="Sprite2D" parent="Pivot"]
 z_index = 3
 position = Vector2(6, 0)
@@ -147,11 +153,16 @@ position = Vector2(16.5, 0)
 shape = SubResource("RectangleShape2D_cpxnh")
 debug_color = Color(0.994694, 0, 0.217901, 0.42)
 
+[node name="SpellComponent" type="Node2D" parent="."]
+script = ExtResource("8_3kyf2")
+
+[node name="ShieldSpell" parent="SpellComponent" instance=ExtResource("9_cips4")]
+
 [node name="CorpseHost" parent="." node_paths=PackedStringArray("player_reference") instance=ExtResource("7_pkqts")]
 player_reference = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]

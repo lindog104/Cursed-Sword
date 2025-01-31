@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwnfyisf80150"]
+
+[ext_resource type="Script" path="res://scripts/hosts/knight_host.gd" id="1_tys1t"]
+[ext_resource type="Texture2D" uid="uid://cyb1ip3ehdj3" path="res://assets/sprites/enemies/Knight/knight_front.png" id="2_k5shy"]
+[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_lm8tf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0v5pv"]
+size = Vector2(6, 10)
+
+[node name="KnightHost" type="Node2D"]
+script = ExtResource("1_tys1t")
+regain_amount = 30
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_k5shy")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_lm8tf")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_0v5pv")
+debug_color = Color(0.293238, 0.629378, 0, 0.42)
+
+[editable path="HurtboxComponent"]

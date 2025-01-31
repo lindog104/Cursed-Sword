@@ -5,6 +5,7 @@ extends Node2D
 # Handles the control of the sword by the player's mouse
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
+@onready var sword_swing_audio_player : AudioStreamPlayer2D = $SwordSwingAudioPlayer
 @onready var hitbox : HitboxComponent = $HitboxComponent
 
 var held: bool = true
@@ -23,6 +24,9 @@ func _input(event: InputEvent) -> void:
 		
 		# Play the animation
 		anim_player.play("swing")
+		
+		# Play the attack audio
+		sword_swing_audio_player.playing = true
 	
 	# If the Parry action is pressed
 	if event.is_action_pressed("parry"):

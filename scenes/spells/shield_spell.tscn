@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://e5yacrd0fywv"]
+
+[ext_resource type="Script" path="res://scripts/spells/shield_spell.gd" id="1_cscj0"]
+[ext_resource type="Texture2D" uid="uid://bxcfg4imf8cmi" path="res://assets/sprite-sheets/SHIELD SPIRE.png" id="2_lbqqv"]
+[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="3_qlfwn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w45u"]
+atlas = ExtResource("2_lbqqv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olv3l"]
+atlas = ExtResource("2_lbqqv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r3sx"]
+atlas = ExtResource("2_lbqqv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2kai"]
+atlas = ExtResource("2_lbqqv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5xey"]
+atlas = ExtResource("2_lbqqv")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdo5j"]
+atlas = ExtResource("2_lbqqv")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fiy4q"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3w45u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olv3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r3sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2kai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5xey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdo5j")
+}],
+"loop": true,
+"name": &"glimmer",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di4vq"]
+radius = 8.06226
+
+[node name="ShieldSpell" type="Node2D"]
+script = ExtResource("1_cscj0")
+cost = 20
+cooldown = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.666667)
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_fiy4q")
+animation = &"glimmer"
+frame = 3
+frame_progress = 0.150534
+speed_scale = 0.5
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_qlfwn")]
+max_health = 25
+disabled = true
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_di4vq")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="health_changed" from="HurtboxComponent" to="." method="on_shield_struck"]
+[connection signal="timeout" from="Cooldown" to="." method="on_cooldown_timeout"]
+
+[editable path="HurtboxComponent"]

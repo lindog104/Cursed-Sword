@@ -18,10 +18,13 @@ func enter()-> void:
 	# Halt the parent's movement
 	parent.movement = Vector2.ZERO
 	
-	# Disable the hurtbox, hitbox, and collision shape
-	hurtbox.queue_free()
-	hitbox.queue_free()
-	collision_shape.disabled = true
+	# Drop the parent on its back or face
+	parent.sprite.rotation_degrees = 90
+	
+	## Disable the hurtbox, hitbox, and collision shape
+	#hurtbox.queue_free()
+	#hitbox.queue_free()
+	#collision_shape.disabled = true
 	
 	# Enable the interaction area
 	interaction_area.turn_on()

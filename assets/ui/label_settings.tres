@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dp6nhk8d6ofvn"]
+
+[ext_resource type="FontFile" uid="uid://cfojxm0uj63xv" path="res://assets/ui/ChromaNautsFont.ttf" id="1_6p7ls"]
+
+[resource]
+font = ExtResource("1_6p7ls")
+font_size = 64

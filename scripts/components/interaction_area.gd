@@ -12,7 +12,7 @@ class_name InteractionArea
 #@export_enum("Press", "Hold") var action_type = 0
 @export var action_type_string: String = "press"
 @export var action_name: String = "interact"
-@export var centering_correction: float = 12.0
+@export var centering_correction: float = 0.0
 @export var disabled : bool = false
 
 # Generic interaction call

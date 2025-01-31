@@ -167,7 +167,7 @@ tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0666663, 0.333333),
+"times": PackedFloat32Array(0.0666663, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -243,7 +243,7 @@ tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0666663, 0.333333),
+"times": PackedFloat32Array(0.0666663, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -319,7 +319,7 @@ tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0666663, 0.333333),
+"times": PackedFloat32Array(0.0666663, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -395,7 +395,7 @@ tracks/5/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0666663, 0.333333),
+"times": PackedFloat32Array(0.0666663, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -416,7 +416,7 @@ size = Vector2(5, 10)
 size = Vector2(6, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhhhv"]
-size = Vector2(6.75, 11)
+size = Vector2(9.125, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwsql"]
 radius = 12.0
@@ -456,7 +456,6 @@ shape = SubResource("RectangleShape2D_hivgf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
-target_desired_distance = 100.0
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("1_3vudx")]
 max_health = 70
@@ -487,16 +486,23 @@ shape = SubResource("CircleShape2D_vwsql")
 script = ExtResource("4_he3pj")
 initialState = NodePath("Wander")
 
-[node name="Wander" type="Node" parent="StateMachine"]
+[node name="Wander" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("12_fqap2")
+parent = NodePath("../..")
 
-[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("nav_agent", "parent")]
 script = ExtResource("8_6aydk")
+nav_agent = NodePath("../../NavigationAgent2D")
 parent = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim_player", "parent")]
 script = ExtResource("13_hsf6q")
+anim_player = NodePath("../../AnimationPlayer")
 parent = NodePath("../..")
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
+wait_time = 2.0
+one_shot = true
 
 [node name="Stunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurtbox", "interaction_area", "parent")]
 script = ExtResource("6_2n2jk")
@@ -513,9 +519,9 @@ collision_shape = NodePath("../../CollisionShape2D")
 parent = NodePath("../..")
 
 [connection signal="target_reached" from="NavigationAgent2D" to="StateMachine/Follow" method="on_target_reached"]
-[connection signal="area_entered" from="HitboxComponent" to="StateMachine/Attack" method="on_hit_detected"]
 [connection signal="body_entered" from="DetectionArea" to="." method="on_player_detected"]
 [connection signal="body_exited" from="DetectionArea" to="." method="on_player_lost"]
+[connection signal="timeout" from="StateMachine/Attack/Cooldown" to="StateMachine/Attack" method="make_attack"]
 
 [editable path="HurtboxComponent"]
 [editable path="HitboxComponent"]

@@ -5,6 +5,7 @@ extends Entity
 # Handles the movement of the player character whether they have a Host or not
 
 @onready var pivot: Node2D = $Pivot
+@onready var spell_component: Node2D = $SpellComponent
 
 @export var host : Host
 

@@ -8,7 +8,8 @@ extends Control
 func on_play_pressed() -> void:
 	# Change the current scene to the inventory select screen
 	# Currently goes to the testground
-	get_tree().change_scene_to_file("res://scenes/levels/testground.tscn")
+	#get_tree().change_scene_to_file("res://scenes/levels/testground.tscn")
+	SceneManager.next_scene()
 
 # Triggered when the Tutorial button is pressed
 func on_tutorial_pressed() -> void:

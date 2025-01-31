@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://beooq7vfi6vt6"]
+
+[ext_resource type="Script" path="res://scripts/ui/end_screen.gd" id="1_kgtyo"]
+[ext_resource type="Texture2D" uid="uid://dfgfmtciet8ra" path="res://assets/ui/background.png" id="1_oapbh"]
+[ext_resource type="LabelSettings" uid="uid://dp6nhk8d6ofvn" path="res://assets/ui/label_settings.tres" id="3_45r6l"]
+[ext_resource type="Theme" uid="uid://d3c3srtne44bm" path="res://assets/ui/ui_theme.tres" id="4_e0ut4"]
+[ext_resource type="FontFile" uid="uid://cfojxm0uj63xv" path="res://assets/ui/ChromaNautsFont.ttf" id="5_cfiv4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fendc"]
+font = ExtResource("5_cfiv4")
+font_size = 48
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kgtyo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oapbh")
+expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "Score: "
+label_settings = ExtResource("3_45r6l")
+
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_fendc")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Thanks for Playing!"
+label_settings = ExtResource("3_45r6l")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("4_e0ut4")
+text = "Play Again"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("4_e0ut4")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

@@ -1,0 +1,207 @@
+[gd_scene load_steps=14 format=3 uid="uid://dtlr54c1ounfn"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_6dlvk"]
+[ext_resource type="Texture2D" uid="uid://dyvybr4wccdp7" path="res://assets/environment/door.png" id="2_0vcsp"]
+[ext_resource type="PackedScene" uid="uid://bhoilpadrbhic" path="res://scenes/components/interaction_area.tscn" id="3_kbaox"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rh3vk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4xsn"]
+size = Vector2(32, 20)
+
+[sub_resource type="Animation" id="Animation_kdh5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y3rc4"]
+resource_name = "open"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_q7jud"]
+resource_name = "open_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_dgy7b"]
+resource_name = "close_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_whjdk"]
+resource_name = "close_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yxhqh"]
+_data = {
+"RESET": SubResource("Animation_kdh5c"),
+"close_down": SubResource("Animation_whjdk"),
+"close_up": SubResource("Animation_dgy7b"),
+"open_down": SubResource("Animation_q7jud"),
+"open_up": SubResource("Animation_y3rc4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlplk"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr30y"]
+size = Vector2(20, 11)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_6dlvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0vcsp")
+offset = Vector2(8, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-16, 0)
+collision_mask = 63
+physics_material_override = SubResource("PhysicsMaterial_rh3vk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_a4xsn")
+debug_color = Color(0.40989, 0.59709, 0.310524, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_yxhqh")
+}
+
+[node name="TopInteractionArea" parent="." instance=ExtResource("3_kbaox")]
+action_name = "open"
+
+[node name="CollisionShape2D" parent="TopInteractionArea" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_wlplk")
+
+[node name="BottomInteractionArea" parent="." instance=ExtResource("3_kbaox")]
+action_name = "open"
+
+[node name="CollisionShape2D" parent="BottomInteractionArea" index="0"]
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_xr30y")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[editable path="TopInteractionArea"]
+[editable path="BottomInteractionArea"]

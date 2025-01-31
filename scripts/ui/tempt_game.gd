@@ -20,7 +20,7 @@ signal minigame_finished
 @export var excess_growth_time : float = 0.5
 var cursor_tween : Tween
 var success_count : int
-var tolerance : float = 0.08
+var tolerance : float = 0.5
 var player_won : bool
 
 # Called whenever a key or input is pressed
@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("tempt"):
 		# Compares the size of the cursor to the size of the target
 		var difference : Vector2 = abs(cursor.scale - target.scale)
-		
+		print(difference)
 		# If the difference is close enough
 		if difference < Vector2(tolerance, tolerance):
 			# Increment the successes
@@ -127,7 +127,7 @@ func build_tween() -> void:
 	
 	# Assign it to increase the size of the cursor
 	cursor_tween.tween_property(cursor, "scale", 
-	Vector2(2.5,2.5), (growth_rate + excess_growth_time))
+	Vector2(10.5,10.5), (growth_rate + excess_growth_time))
 
 # Called when the Growth Timer expires
 func on_growth_timeout() -> void:

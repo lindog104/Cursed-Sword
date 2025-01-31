@@ -1,15 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://3ld8lrwfhpet"]
+[gd_scene load_steps=8 format=3 uid="uid://3ld8lrwfhpet"]
 
-[ext_resource type="Texture2D" uid="uid://bim2nry0yrysc" path="res://assets/sprites/ui/Health_empty.png" id="1_ekyk3"]
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_ihbqg"]
-[ext_resource type="Texture2D" uid="uid://cmo5t60hm4yvp" path="res://assets/sprites/ui/healthy_full.png" id="2_3e2fe"]
-[ext_resource type="Shader" path="res://shaders/soul_energy.gdshader" id="3_dw32x"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0kwr"]
-shader = ExtResource("3_dw32x")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1vwh"]
-load_path = "res://.godot/imported/healthy_full.png-34cc83b51b2d4125dc6c3986043a33ba.ctex"
+[ext_resource type="Texture2D" uid="uid://dll78hegleklh" path="res://assets/Gui Elements/heart empty.png" id="2_gxdx2"]
+[ext_resource type="Texture2D" uid="uid://cmuq7c1fbb0fm" path="res://assets/Gui Elements/host health.png" id="3_epkbo"]
+[ext_resource type="Texture2D" uid="uid://bvjy2hqqhomjy" path="res://assets/Gui Elements/soul_sword_empty.png" id="4_3nav0"]
+[ext_resource type="Texture2D" uid="uid://dj3pj3t0jyj8r" path="res://assets/Gui Elements/soul_sword_progress.png" id="5_d57u1"]
+[ext_resource type="Texture2D" uid="uid://b5rx8fbh2q5u1" path="res://assets/Items/key_.png" id="5_vbmr0"]
+[ext_resource type="PackedScene" uid="uid://j0kayc5rruc3" path="res://scenes/ui/spell_icon.tscn" id="6_pb8oi"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -34,19 +31,56 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-max_value = 50.0
+max_value = 75.0
+step = 12.5
 value = 50.0
-texture_under = ExtResource("1_ekyk3")
-texture_over = ExtResource("1_ekyk3")
-texture_progress = ExtResource("2_3e2fe")
+texture_under = ExtResource("2_gxdx2")
+texture_progress = ExtResource("3_epkbo")
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
-material = SubResource("ShaderMaterial_b0kwr")
+[node name="SoulBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 value = 100.0
-texture_under = ExtResource("1_ekyk3")
-texture_over = ExtResource("1_ekyk3")
-texture_progress = SubResource("CompressedTexture2D_x1vwh")
+texture_under = ExtResource("4_3nav0")
+texture_progress = ExtResource("5_d57u1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Key" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("5_vbmr0")
+expand_mode = 4
+
+[node name="KeyCounter" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 481.0
+offset_right = 208.0
+offset_bottom = 649.0
+
+[node name="SpellIcon" parent="HBoxContainer2" instance=ExtResource("6_pb8oi")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+
+[node name="SpellIcon2" parent="HBoxContainer2" instance=ExtResource("6_pb8oi")]
+visible = false
+layout_mode = 2
+
+[node name="SpellIcon3" parent="HBoxContainer2" instance=ExtResource("6_pb8oi")]
+visible = false
+layout_mode = 2
+
+[editable path="HBoxContainer2/SpellIcon2"]
+[editable path="HBoxContainer2/SpellIcon3"]

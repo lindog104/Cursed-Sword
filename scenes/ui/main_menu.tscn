@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch05vjfkpksjs"]
+[gd_scene load_steps=16 format=3 uid="uid://ch05vjfkpksjs"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_c53gg"]
+[ext_resource type="Texture2D" uid="uid://dfgfmtciet8ra" path="res://assets/ui/background.png" id="2_7o6vj"]
+[ext_resource type="Texture2D" uid="uid://0qpoirymi38m" path="res://assets/ui/title-texture.png" id="3_f5u5n"]
+[ext_resource type="Texture2D" uid="uid://drfbp6ty304p3" path="res://assets/ui/p.png" id="4_6x54q"]
+[ext_resource type="Theme" uid="uid://d3c3srtne44bm" path="res://assets/ui/ui_theme.tres" id="4_uyeck"]
+[ext_resource type="Texture2D" uid="uid://dxxp7ey4b1p5h" path="res://assets/ui/o.png" id="5_cr8bx"]
+[ext_resource type="Texture2D" uid="uid://bdbpakjo0uwp0" path="res://assets/ui/s0.png" id="6_640jo"]
+[ext_resource type="Texture2D" uid="uid://dvcgghlc5l5t" path="res://assets/ui/s1.png" id="7_6yi0t"]
+[ext_resource type="Texture2D" uid="uid://d7c2wei5hv48" path="res://assets/ui/e.png" id="8_hxwkl"]
+[ext_resource type="Texture2D" uid="uid://c52j1lmvhlebs" path="res://assets/ui/s2.png" id="9_58a8m"]
+[ext_resource type="Texture2D" uid="uid://bkagkhjssdg6n" path="res://assets/ui/s3.png" id="10_6hp0x"]
+[ext_resource type="Texture2D" uid="uid://o6yl6xi1neqd" path="res://assets/ui/i.png" id="11_flf6h"]
+[ext_resource type="Texture2D" uid="uid://d2qpss3njhw1c" path="res://assets/ui/o1.png" id="12_m07vs"]
+[ext_resource type="Texture2D" uid="uid://dcf7rf0mjvojl" path="res://assets/ui/n.png" id="13_j3fhd"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nt321"]
-font_size = 48
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjk0i"]
+atlas = ExtResource("3_f5u5n")
+region = Rect2(73.7169, 7.27986, 144.322, 47.3648)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -16,6 +30,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_c53gg")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7o6vj")
+expand_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -23,20 +47,92 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
-text = "Cursed Sword"
-label_settings = SubResource("LabelSettings_nt321")
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jjk0i")
+expand_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+texture = ExtResource("4_6x54q")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("5_cr8bx")
+expand_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("6_640jo")
+expand_mode = 3
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("7_6yi0t")
+expand_mode = 3
+
+[node name="TextureRect5" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("8_hxwkl")
+expand_mode = 3
+
+[node name="TextureRect6" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("9_58a8m")
+expand_mode = 3
+
+[node name="TextureRect7" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("10_6hp0x")
+expand_mode = 3
+
+[node name="TextureRect8" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("11_flf6h")
+expand_mode = 3
+
+[node name="TextureRect9" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("12_m07vs")
+expand_mode = 3
+
+[node name="TextureRect10" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("13_j3fhd")
+expand_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -45,15 +141,22 @@ theme_override_constants/margin_right = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="Play" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(256, 96)
 layout_mode = 2
+theme = ExtResource("4_uyeck")
 theme_override_font_sizes/font_size = 24
 text = "Play"
 
 [node name="Tutorial" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(192, 64)
 layout_mode = 2
+theme = ExtResource("4_uyeck")
+theme_type_variation = &"ButtonTwo"
 theme_override_font_sizes/font_size = 24
 text = "Tutorial"
 

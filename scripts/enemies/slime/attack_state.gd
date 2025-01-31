@@ -34,6 +34,10 @@ func exit() -> void:
 	
 	# Resets the parent's material
 	parent.material = null
+	
+	# Stop the timers
+	$StartUp.stop()
+	$Cooldown.stop()
 
 # Called every physics frame. 'delta' is the time between frames
 func physicsUpdate(delta: float) -> void:
@@ -56,18 +60,21 @@ func physicsUpdate(delta: float) -> void:
 		hitbox.turn_off()
 		
 		# Create a single use timer to handle the attack cooldown time
-		get_tree().create_timer(attack_cooldown).timeout.connect(on_cooldown_finished)
+		$Cooldown.start()
 
 # Called internally to signal attack just before attacking
 func signal_attack() -> void:
 	# Loads the attacking shader to warn the player of the attack
 	parent.material = attacking_material
 	
+	# Plays the attacking animation
+	parent.sprite.play("jump")
+	
 	# Turns on the hitbox
 	hitbox.turn_on()
 	
 	# Creates an initial cooldown before the first attack at half attack cooldown
-	get_tree().create_timer(attack_cooldown / 2).timeout.connect(begin_attack)
+	$StartUp.start()
 
 # Called internally to begin attack
 func begin_attack() -> void:	

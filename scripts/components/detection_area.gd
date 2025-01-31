@@ -1,4 +1,5 @@
 extends Area2D
+class_name DetectionArea
 
 ## Detection Area Component script
 #
