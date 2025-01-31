@@ -6,8 +6,7 @@ extends CanvasLayer
 
 # Triggered when the Restart button is pressed
 func on_restart_pressed() -> void:
-	# Reload the current scene
-	get_tree().reload_current_scene()
+	SceneManager.restart_game()
 
 # Triggered when the Quit button is pressed
 func on_quit_pressed() -> void:

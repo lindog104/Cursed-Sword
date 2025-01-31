@@ -145,13 +145,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="Play" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(128, 64)
+custom_minimum_size = Vector2(256, 96)
 layout_mode = 2
 theme = ExtResource("4_uyeck")
 theme_override_font_sizes/font_size = 24
 text = "Play"
 
 [node name="Tutorial" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(192, 64)
 layout_mode = 2
 theme = ExtResource("4_uyeck")

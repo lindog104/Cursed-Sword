@@ -1,8 +1,11 @@
 extends AnimatedSprite2D
 
-@onready var chest_opening_audio_player : AudioStreamPlayer2D = $ChestOpeningAudioPlayer
+var gem: PackedScene = load("res://scenes/Items/gem.tscn")
 
-func area_entered():
-	$".".play("Open")
+func body_entered(_body):
+	play("Open")
+
+func animation_finished():
+	$Area2D.body_entered.disconnect(body_entered)
 	
-	chest_opening_audio_player.playing = true
+	owner.add_child(gem.instantiate())

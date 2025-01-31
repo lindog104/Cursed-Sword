@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://csbughv1cgthl"]
+[gd_scene load_steps=11 format=4 uid="uid://csbughv1cgthl"]
 
 [ext_resource type="Texture2D" uid="uid://cgqnm4bv1c2rt" path="res://assets/environment/Background Elements/TileSet.png" id="1_6ki1s"]
+[ext_resource type="PackedScene" uid="uid://3ld8lrwfhpet" path="res://scenes/ui/hud.tscn" id="1_65f78"]
 [ext_resource type="Texture2D" uid="uid://1ncdk67i3h3e" path="res://assets/environment/Background Elements/Bars.png" id="4_bevi7"]
 [ext_resource type="PackedScene" uid="uid://niuj0cq75555" path="res://scenes/chest.tscn" id="5_swbjb"]
 [ext_resource type="PackedScene" uid="uid://bg18syghos0qw" path="res://scenes/player.tscn" id="10_jpog3"]
@@ -28,7 +29,16 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_1oafc")
 sources/9 = SubResource("TileSetAtlasSource_j2vbr")
 tile_proxies/coords_level = [[0, Vector2i(0, 0)], [9, Vector2i(0, 0)], [1, Vector2i(0, 0)], [9, Vector2i(1, 0)], [2, Vector2i(0, 0)], [9, Vector2i(2, 0)], [3, Vector2i(0, 0)], [9, Vector2i(3, 0)], [4, Vector2i(0, 0)], [9, Vector2i(4, 0)], [5, Vector2i(0, 0)], [9, Vector2i(5, 0)], [6, Vector2i(0, 0)], [9, Vector2i(6, 0)], [7, Vector2i(0, 0)], [9, Vector2i(7, 0)], [8, Vector2i(0, 0)], [9, Vector2i(8, 0)]]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tpgbl"]
+vertices = PackedVector2Array(692.57, -629, 699.258, -515.273, 633.109, -528.109, 586, -580, 493.313, -114.469, 500.352, -67.2813, 249, -73.2422, 438, -117.539, 370.242, -627.578, 375.492, -590.82, 187, -587.844, 182.57, -640.633, 392.352, -323.844, 438, -329.227, 385.656, -130, 246, -130, 720.188, -183.289, 715.203, -439.477, 756, -437.469, 756, -132.859, 691.453, -143.961, 629.898, -180.711, 9.36719, -196.742, -59.0313, -198.688, -53.0234, -261.82, -9.5625, -314.75, 51.7891, -309.711, 57.8828, -241.781, 54.1719, -199.313, 50.5, -652.477, 53.5234, -587.828, -118, -585.148, -118, -690.898, 179.602, -688.078, 137.852, -648.57, 140.844, -462, 187, -500.883, 501.828, -462, 461.242, -504.117, 499.828, -580, 458.25, -629, 586, -376.078, 592.117, -325.781, 752.891, 11.0625, 751.102, 185.828, 461, 181.148, 461, 56.1328, 249, 14.0625, -9.85156, 49.8672, 206.156, 14.9219, 694.547, -74.5938, 589.117, -70.3984, 204.773, -373.07, 246, -326.156, 201.773, -245.227, 202.852, -194.703, -115.219, -262.844, -117.758, -373.227, -12.5078, -375.758, -11.8516, 182, -118.156, 182, -52.4688, 75.5938, 52.1563, -78, 17.3516, -78, -119.844, 78.5625, -49.4766, 16.9219)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 7, 14), PackedInt32Array(14, 7, 6, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(16, 19, 20, 21), PackedInt32Array(22, 23, 24, 25, 26, 27, 28), PackedInt32Array(29, 30, 31, 32), PackedInt32Array(29, 32, 33, 34), PackedInt32Array(34, 33, 11, 35), PackedInt32Array(35, 11, 10, 36), PackedInt32Array(37, 35, 36, 38), PackedInt32Array(39, 37, 38, 40), PackedInt32Array(39, 40, 0, 3), PackedInt32Array(41, 3, 2, 21, 42), PackedInt32Array(43, 44, 45, 46), PackedInt32Array(47, 43, 46, 48, 49), PackedInt32Array(20, 50, 51, 21), PackedInt32Array(21, 51, 42), PackedInt32Array(41, 42, 13, 52), PackedInt32Array(52, 13, 12, 53), PackedInt32Array(54, 52, 53, 15, 55), PackedInt32Array(56, 57, 58, 25, 24), PackedInt32Array(48, 59, 60, 61), PackedInt32Array(28, 62, 63, 22), PackedInt32Array(60, 64, 61), PackedInt32Array(48, 61, 65), PackedInt32Array(48, 65, 49), PackedInt32Array(6, 47, 49, 55, 15), PackedInt32Array(54, 55, 28, 27)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 192, -128, 192, -130, 69, -62, 66, -59, 7, 196, 5, 193, -185, 64, -189, 62, -68, 8, -68, 0, -187, -70, -189, -64, -252, -125, -253, -128, -383, -3, -386, 0, -324, 61, -319, 67, -252, 192, -255, 195, -383, 576, -386, 576, -570, 510, -570, 512, -452, 131, -452, 128, -639, 61, -642, 64, -578, -128, -575, -128, -701, 189, -698, 192, -650, 379, -637, 387, -581, 197, -578, 197, -511, 451, -514, 448, -639, 702, -639, 710, -503, 643, -516, 640, -191, 710, -193, 705, -450, 766, -447, 766, -121, 702, -132, 705, -65, 579, -60, 582, -316, 448, -319, 448, -127, 502, -124, 512, -57, 259, -63, 259, 4, 763, 1, 761, 196, 451, 191, 451, 66, 0, 60), PackedVector2Array(382, -314, 256, -316, 256, -140, 376, -140)])
+
 [node name="Level1" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("1_65f78")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
@@ -37,7 +47,6 @@ tile_set = SubResource("TileSet_sag2v")
 
 [node name="Player" parent="." instance=ExtResource("10_jpog3")]
 position = Vector2(-104, 120)
-speed = null
 
 [node name="Key" parent="." instance=ExtResource("11_xedv0")]
 position = Vector2(752, 16)
@@ -59,3 +68,6 @@ scale = Vector2(2, 2)
 [node name="Chest2" parent="." instance=ExtResource("5_swbjb")]
 position = Vector2(736, -408)
 scale = Vector2(2, 2)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_tpgbl")

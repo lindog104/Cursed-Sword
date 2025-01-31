@@ -8,9 +8,18 @@ extends Node
 @onready var tempt_game: PackedScene = load("res://scenes/ui/tempt_game.tscn")
 @onready var game_over: PackedScene = load("res://scenes/ui/game_over.tscn")
 
+var scene_counter: int = 0
+var scene_order: Array = [
+	"res://scenes/levels/level_1.tscn",
+	"res://scenes/levels/Level_2.tscn",
+	
+]
+
 var percent_of_slowdown: float = 0.5
 var player: Entity
 var hud: Control
+var num_of_keys: int = 0
+var score: int = 0
 
 # Triggered by the Player's Host's hurtbox
 func on_health_changed(current_health: int) -> void:
@@ -77,7 +86,7 @@ func pass_new_host(caller: Node2D, target_host: PackedScene, tempted: bool = fal
 	if tempted:
 		# Reset the player's health to 3 hits
 		hud.update_health(75)
-		player.spell_component.regain_soul(new_host.regain_amount)
+		player.spell_component.regain_energy(new_host.regain_amount)
 	# If new host is from a dead enemy
 	else:
 		# Reset the player's health to two hits
@@ -114,11 +123,36 @@ func on_player_death() -> void:
 	get_tree().current_scene.add_child(game_over.instantiate())
 
 # Called by the PlayerSpellComponent when the player inputs a spell
-func on_spell_attempt(index: int, cooldown: int, cost: int, failed: bool = false) -> void:
+func on_spell_attempt(_index: int, cooldown: int, cost: int, failed: bool = false) -> void:
 	check_hud_reference()
 	if failed:
 		hud.spell_icon.failed_spell()
 	else:
 		hud.spell_icon.successful_spell(cooldown)
 		hud.update_soul(-cost)
+
+func on_key_picked_up() -> void:
+	num_of_keys += 1
+	hud.update_key_count(num_of_keys)
+
+func on_key_use_attempt() -> bool:
+	var key_used: bool = false
 	
+	if num_of_keys > 0:
+		num_of_keys -= 1
+		key_used = true
+	
+	return key_used
+
+func on_gem_picked_up(gem_value: int) -> void:
+	score += gem_value
+
+func next_scene() -> void:
+	get_tree().change_scene_to_file(scene_order[scene_counter])
+	scene_counter += 1
+
+func restart_game() -> void:
+	get_tree().change_scene_to_file(scene_order[0])
+	scene_counter = 0
+	score = 0
+	num_of_keys = 0

@@ -20,3 +20,6 @@ func update_health(current_health: int) -> void:
 func update_soul(spell_cost: int) -> void:
 	# Sets the amount of the under texture that is visible
 	soul_bar.value += spell_cost
+
+func update_key_count(amount: int) -> void:
+	key_counter.text = str(amount)
