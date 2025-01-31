@@ -1,10 +1,8 @@
 extends AnimatedSprite2D
 
+@onready var chest_opening_audio_player : AudioStreamPlayer2D = $ChestOpeningAudioPlayer
 
-
-
-func body_entered(_body):
-	play("Open")
-
-func animation_finished():
-	$Area2D.body_entered.disconnect(body_entered)
+func area_entered():
+	$".".play("Open")
+	
+	chest_opening_audio_player.playing = true
