@@ -25,6 +25,7 @@ func _input(event: InputEvent) -> void:
 		# Play the animation
 		anim_player.play("swing")
 		
+		# Play the attack audio
 		sword_swing_audio_player.playing = true
 	
 	# If the Parry action is pressed
