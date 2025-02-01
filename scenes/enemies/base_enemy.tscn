@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2u7k5dj05ulr"]
 
-[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/hurtbox_component.tscn" id="4_qt5ku"]
-[ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/hitbox_component.tscn" id="5_kmkxg"]
-[ext_resource type="PackedScene" uid="uid://bhoilpadrbhic" path="res://scenes/interaction_area.tscn" id="6_2uadw"]
+[ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="4_qt5ku"]
+[ext_resource type="PackedScene" uid="uid://dpubgon71gsw6" path="res://scenes/components/hitbox_component.tscn" id="5_kmkxg"]
+[ext_resource type="PackedScene" uid="uid://bhoilpadrbhic" path="res://scenes/components/interaction_area.tscn" id="6_2uadw"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="7_d65yd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwsql"]
@@ -38,7 +38,9 @@ disabled = true
 position = Vector2(0, 5)
 
 [node name="InteractionArea" parent="." instance=ExtResource("6_2uadw")]
+action_type_string = null
 action_name = "possess"
+centering_correction = null
 disabled = true
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]

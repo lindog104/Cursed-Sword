@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsmio0ce6v7cy"]
+[gd_scene load_steps=14 format=3 uid="uid://dml0lg2an0v6x"]
 
 [ext_resource type="Script" path="res://scripts/exit.gd" id="1_05yoy"]
 [ext_resource type="Texture2D" uid="uid://dyvybr4wccdp7" path="res://assets/environment/door.png" id="2_i3xxv"]
@@ -184,7 +184,10 @@ libraries = {
 }
 
 [node name="BottomInteractionArea" parent="." instance=ExtResource("3_qtb4u")]
+action_type_string = null
 action_name = "open"
+centering_correction = null
+disabled = null
 
 [node name="CollisionShape2D" parent="BottomInteractionArea" index="0"]
 position = Vector2(0, 15.5)

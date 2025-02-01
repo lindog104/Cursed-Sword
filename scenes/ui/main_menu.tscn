@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ch05vjfkpksjs"]
+[gd_scene load_steps=17 format=3 uid="uid://ch05vjfkpksjs"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_c53gg"]
 [ext_resource type="Texture2D" uid="uid://dfgfmtciet8ra" path="res://assets/ui/background.png" id="2_7o6vj"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://o6yl6xi1neqd" path="res://assets/ui/i.png" id="11_flf6h"]
 [ext_resource type="Texture2D" uid="uid://d2qpss3njhw1c" path="res://assets/ui/o1.png" id="12_m07vs"]
 [ext_resource type="Texture2D" uid="uid://dcf7rf0mjvojl" path="res://assets/ui/n.png" id="13_j3fhd"]
+[ext_resource type="AudioStream" uid="uid://bc11lrm6ub2js" path="res://music/Past_Possession__Lost_Hilt.wav" id="15_663h7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjk0i"]
 atlas = ExtResource("3_f5u5n")
@@ -159,6 +160,10 @@ theme = ExtResource("4_uyeck")
 theme_type_variation = &"ButtonTwo"
 theme_override_font_sizes/font_size = 24
 text = "Tutorial"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_663h7")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/MarginContainer2/VBoxContainer/Play" to="." method="on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer2/VBoxContainer/Tutorial" to="." method="on_tutorial_pressed"]

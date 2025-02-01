@@ -475,6 +475,10 @@ disabled = true
 debug_color = Color(0.998196, 0, 0.148162, 0.42)
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_opc1o")]
+action_type_string = null
+action_name = null
+centering_correction = null
+disabled = null
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 position = Vector2(-1, 1)

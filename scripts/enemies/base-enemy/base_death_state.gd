@@ -44,7 +44,8 @@ func become_possessed() -> void:
 	# Signal the SceneManager to have the player possess this corpse
 	# Pass along the enemy that signaled and
 	# the Host that will be assigned to the player
-	SceneManager.pass_new_host(parent, parent.host_file)
+	pass
+	#SceneManager.pass_new_host(parent, parent.host_file)
 
 # Called when the despawn timer expires
 func on_despawn_ended() -> void:

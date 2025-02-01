@@ -49,6 +49,7 @@ func _physics_process(_delta: float) -> void:
 func on_player_detected(body: Node2D) -> void:
 	# Update the target reference
 	target = body
+	print("Peasant set target to ", target)
 	
 	# Force state change to Follow
 	$StateMachine.on_external_state_change("follow")

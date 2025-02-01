@@ -11,6 +11,7 @@ size = Vector2(6, 9)
 script = ExtResource("1_h7o8n")
 
 [node name="Icon" type="Sprite2D" parent="."]
+light_mask = 0
 texture = ExtResource("2_bwcf8")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_q74ys")]

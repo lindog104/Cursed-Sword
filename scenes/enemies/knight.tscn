@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://0pq0g1yap23e"]
+[gd_scene load_steps=30 format=3 uid="uid://clo1ouob64uiy"]
 
 [ext_resource type="PackedScene" uid="uid://dynu3c1quufp0" path="res://scenes/components/hurtbox_component.tscn" id="1_iwlq8"]
 [ext_resource type="Script" path="res://scripts/enemies/knight/knight.gd" id="1_nvdl2"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ixg8p5c7ouxt" path="res://assets/sprites/enemies/Knight/knight_back.png" id="3_cm80s"]
 [ext_resource type="PackedScene" uid="uid://bhoilpadrbhic" path="res://scenes/components/interaction_area.tscn" id="3_j8qpa"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="4_81wih"]
-[ext_resource type="PackedScene" uid="uid://dwnfyisf80150" path="res://scenes/host-files/knight_host.tscn" id="4_nufh3"]
+[ext_resource type="PackedScene" path="res://scenes/host-files/knight_host.tscn" id="4_nufh3"]
 [ext_resource type="Texture2D" uid="uid://cswrkmcdvv5xt" path="res://assets/sprites/Rusty_sword.png" id="5_witnb"]
 [ext_resource type="Texture2D" uid="uid://byglp01ow4km5" path="res://assets/sprites/Sword_Swing.png" id="6_cse7y"]
 [ext_resource type="Script" path="res://scripts/enemies/peasant/wander_state.gd" id="6_da4na"]

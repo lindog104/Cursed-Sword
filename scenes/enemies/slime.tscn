@@ -270,7 +270,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwsql"]
 radius = 13.0
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("target")]
 scale = Vector2(0.8, 0.8)
 collision_layer = 4
 collision_mask = 7
@@ -278,6 +278,7 @@ motion_mode = 1
 script = ExtResource("1_nxx33")
 initial_speed = 40.0
 host_file = ExtResource("2_a1ndu")
+target = NodePath(".")
 speed = 40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -310,7 +311,9 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_id38e")
 
 [node name="InteractionArea" parent="." instance=ExtResource("5_b4s56")]
+action_type_string = null
 action_name = "possess"
+centering_correction = null
 disabled = true
 
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]

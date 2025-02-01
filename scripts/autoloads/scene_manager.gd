@@ -12,7 +12,7 @@ var scene_counter: int = 0
 var scene_order: Array = [
 	"res://scenes/levels/level_1.tscn",
 	"res://scenes/levels/Level_2.tscn",
-	
+	"res://scenes/ui/end_screen.tscn"
 ]
 
 var percent_of_slowdown: float = 0.5
@@ -46,7 +46,7 @@ func play_temptation_minigame(caller: Node2D, target_host: PackedScene, dropped:
 	
 	# Slow down the game and halt the player's movement
 	Engine.time_scale = percent_of_slowdown
-	player.host.halt()
+	#player.host.halt()
 	
 	# Call the minigame and store its result
 	var player_won_minigame = await temptation_game.play_minigame(speedup_modifier)
@@ -67,7 +67,7 @@ func play_temptation_minigame(caller: Node2D, target_host: PackedScene, dropped:
 	
 	# Resume normal speed and return control to the player
 	Engine.time_scale = 1.0
-	player.host.resume()
+	#player.host.resume()
 
 # Triggered by a Dead enemy signaling a possession input
 # Or called internally when Tempt successful
@@ -77,7 +77,7 @@ func pass_new_host(caller: Node2D, target_host: PackedScene, tempted: bool = fal
 	new_host.player_reference = player
 	
 	# Extract the player's current host
-	var old_host: Host = player.host
+	#var old_host: Host = player.host
 	
 	# Safety check the hud reference
 	check_hud_reference()
@@ -98,7 +98,7 @@ func pass_new_host(caller: Node2D, target_host: PackedScene, tempted: bool = fal
 	
 	# "Drop" the former host body (not sure how to do this yet)
 	# Remove the old host from the player
-	old_host.queue_free()
+	#old_host.queue_free()
 	
 	# Move the player to the position of the new host
 	player.global_position = caller.global_position
@@ -117,7 +117,7 @@ func check_hud_reference() -> void:
 # Or triggered by the Player death or dropped states
 func on_player_death() -> void:
 	# Disable the player scene
-	player.call_deferred("set_process_mode", 4)
+	#player.call_deferred("set_process_mode", 4)
 	
 	# Display the Game Over Screen
 	get_tree().current_scene.add_child(game_over.instantiate())

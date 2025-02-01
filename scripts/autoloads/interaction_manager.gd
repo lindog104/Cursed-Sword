@@ -26,6 +26,7 @@ func register_area(area: InteractionArea) -> void:
 func unregister_area(area: InteractionArea) -> void:
 	# Remove the given InteractionArea from active_areas if it is in active_areas
 	active_areas.erase(area)
+	
 
 # Called every frame
 func _process(_delta: float) -> void:
@@ -96,4 +97,4 @@ func failed_interact() -> void:
 		)
 
 
-# Maelle was here
+# Maelle was here Emma too
